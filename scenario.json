@@ -1,0 +1,227 @@
+{
+  "formatVersion": 1,
+  "title": "Why the shift ran late",
+  "theme": "auto",
+  "start": "s_open",
+  "vars": {
+    "var_wait": {
+      "id": "var_wait",
+      "key": "wait",
+      "label": "Minutes Rachel waited",
+      "start": 55,
+      "min": 0,
+      "max": 120,
+      "decimals": 0,
+      "show": true,
+      "x": 700,
+      "y": 720
+    }
+  },
+  "scenes": {
+    "s_open": {
+      "id": "s_open",
+      "type": "content",
+      "name": "14:55, Wednesday",
+      "x": 100,
+      "y": 300,
+      "title": "14:55, Wednesday",
+      "body": "<p>You are covering a shift for Danni, who called in sick.</p><p>Rachel, 24. She works Wednesdays at a garden centre on the north side of town. You are rostered to collect her at 3:00 and drive her to physio at 3:30.</p><p>You have never met her.</p><p>You are in the car park. The only thing you have is last week's note.</p>",
+      "image": "",
+      "video": "",
+      "choices": [
+        {
+          "id": "c1",
+          "label": "Read the note",
+          "target": "s_note",
+          "points": 0,
+          "feedback": ""
+        }
+      ]
+    },
+    "s_note": {
+      "id": "s_note",
+      "type": "content",
+      "name": "The note",
+      "x": 400,
+      "y": 300,
+      "title": "Last Wednesday's note",
+      "body": "<p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Took Rachel to work. All good. She seemed a little tired in the car.</em></p><p>That is the whole note.</p>",
+      "image": "",
+      "video": "",
+      "choices": [
+        {
+          "id": "c1",
+          "label": "Go and find her",
+          "target": "q_arrive",
+          "points": 0,
+          "feedback": ""
+        }
+      ]
+    },
+    "q_arrive": {
+      "id": "q_arrive",
+      "type": "question",
+      "name": "She is not out front",
+      "x": 700,
+      "y": 300,
+      "title": "Rachel is not at the front entrance",
+      "body": "<p>It is 2:55. The roster says front entrance. There are two staff having a smoke by the door and no sign of Rachel.</p><p>Physio is a twelve minute drive.</p><p><strong>What do you do?</strong></p>",
+      "image": "",
+      "video": "",
+      "choices": [
+        {
+          "id": "c1",
+          "label": "Wait in the car — she will come out",
+          "target": "s_wait",
+          "points": 0,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 25,
+              "id": "f_wait"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "Go inside and ask someone",
+          "target": "s_inside",
+          "points": 0,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 6,
+              "id": "f_inside"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "Ring the office",
+          "target": "s_office",
+          "points": 0,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 14,
+              "id": "f_office"
+            }
+          ]
+        }
+      ]
+    },
+    "s_wait": {
+      "id": "s_wait",
+      "type": "content",
+      "name": "You wait",
+      "x": 1040,
+      "y": 60,
+      "title": "You wait in the car",
+      "body": "<p>You wait. At 3:05 you get out and walk to the front doors.</p><p>Rachel has been sitting on a pallet by the loading door at the back since two o'clock. She always waits there. The front entrance is loud and there is nowhere to sit.</p><p>You leave at 3:20. Physio has a fifteen minute grace period. You do not make it.</p>",
+      "image": "",
+      "video": "",
+      "choices": [
+        {
+          "id": "c1",
+          "label": "Continue",
+          "target": "q_note",
+          "points": 0,
+          "feedback": ""
+        }
+      ]
+    },
+    "s_inside": {
+      "id": "s_inside",
+      "type": "content",
+      "name": "You go inside",
+      "x": 1040,
+      "y": 320,
+      "title": "You go inside and ask",
+      "body": "<p>A supervisor points you round the back without looking up. \"She'll be on the pallet by the loading door. She's always there.\"</p><p>Rachel has been waiting since two. She finished early today.</p><p>You make physio with three minutes to spare.</p><p>Nobody wrote any of this down. You found out because you asked a stranger.</p>",
+      "image": "",
+      "video": "",
+      "choices": [
+        {
+          "id": "c1",
+          "label": "Continue",
+          "target": "q_note",
+          "points": 0,
+          "feedback": ""
+        }
+      ]
+    },
+    "s_office": {
+      "id": "s_office",
+      "type": "content",
+      "name": "You ring the office",
+      "x": 1040,
+      "y": 580,
+      "title": "You ring the office",
+      "body": "<p>Someone in the office answers and opens the file while you wait.</p><p>The note says what you have already read.</p><p>She rings the garden centre, then rings you back at 3:09. Rachel waits at the loading door. She finished at two today.</p><p>The office has now spent nine minutes on a question that a single line in a note would have answered.</p>",
+      "image": "",
+      "video": "",
+      "choices": [
+        {
+          "id": "c1",
+          "label": "Continue",
+          "target": "q_note",
+          "points": 0,
+          "feedback": ""
+        }
+      ]
+    },
+    "q_note": {
+      "id": "q_note",
+      "type": "question",
+      "name": "Your turn to write",
+      "x": 1380,
+      "y": 320,
+      "title": "You are writing your own note now",
+      "body": "<p>Next Wednesday somebody covers Rachel. It might be Danni. It might be someone who has never met her.</p><p><strong>Which of these would you write?</strong></p>",
+      "image": "",
+      "video": "",
+      "choices": [
+        {
+          "id": "c1",
+          "label": "\"Collected Rachel from work and drove her to physio. All went well.\"",
+          "target": "s_end",
+          "points": 0,
+          "feedback": "\"All went well\" is your judgement, and the next worker cannot act on it. They still will not know where she waits, or that she sometimes finishes at two."
+        },
+        {
+          "id": "c2",
+          "label": "\"Rachel waits on the pallet by the loading door at the back, not the front entrance. She finished at 2:00 today and had been waiting. Collected her at 3:05 and drove her to physio.\"",
+          "target": "s_end",
+          "points": 3,
+          "feedback": "This is the one. Where she waits, when she finished, what you did. The next worker walks straight round the back and Rachel does not sit on a pallet for an hour."
+        },
+        {
+          "id": "c3",
+          "label": "\"Rachel was annoyed about being kept waiting again.\"",
+          "target": "s_end",
+          "points": -2,
+          "feedback": "\"Annoyed\" is what you concluded, not what you saw — and it puts the problem on Rachel rather than on the missing information. The next worker now meets an annoyed woman before they meet Rachel."
+        }
+      ]
+    },
+    "s_end": {
+      "id": "s_end",
+      "type": "ending",
+      "name": "Debrief",
+      "x": 1720,
+      "y": 320,
+      "title": "There was no good option at 2:55",
+      "body": "<p>Waiting cost Rachel her appointment. Ringing the office cost the office nine minutes. Asking a stranger worked, and you should not have had to.</p><p>None of that was your mistake. The information you needed was never written down.</p><p>Last Wednesday somebody had a few minutes at the end of a long day and wrote eleven words.</p><p><strong>Next Wednesday, yours is someone else's.</strong></p><hr><p>Here is what could have been written in the same few minutes:</p><p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Drove Rachel to the garden centre for her 9:00 start. Rachel waits at the loading door at the back when she finishes, not the front entrance. Some Wednesdays she finishes at 2:00 instead of 3:00 — check with her supervisor. Collected her at 3:05 and drove her to physio.</em></p><p>Same shift. Same few minutes. <strong>Three headings.</strong></p>",
+      "image": "",
+      "video": "",
+      "choices": []
+    }
+  },
+  "locked": true
+}
