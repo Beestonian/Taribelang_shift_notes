@@ -1,44 +1,54 @@
-# Taribelang shift notes — branching scenario
+# Taribelang shift notes — branching scenarios
 
-The opening scenario for the shift-notes learning module. Built with
-[Switchback](https://switchback.dev); delivered as a single page and embedded
-in Articulate Rise 360 via an iframe.
+Branching scenarios for the shift-notes learning module. Built with Switchback;
+delivered as a single page and embedded in Articulate Rise 360 via an iframe.
 
-## Files
+## Layout
 
-| File | What it is |
+| Path | What it is |
 |---|---|
-| `index.html` | The player. Uploaded once. Don't edit by hand. |
-| `scenario.json` | The scenario. **This is the only file you normally change.** |
+| `index.html` | The player. One copy, shared by every scenario. Don't hand-edit. |
+| `scenarios/default.json` | Loaded when no scenario is named. Currently *Why the shift ran late*. |
+| `scenarios/<name>.json` | Loaded by `?s=<name>`. |
 
-`index.html` fetches `scenario.json` from alongside itself at load, with a
-timestamp query so no cache can stale it. If that fetch fails — opened from
-disk, or served without the JSON — it falls back to a copy baked into the page,
-so the file still works offline.
+`index.html` fetches its scenario at load with a timestamp query, so no cache can
+stale it. If a **named** scenario is missing it says so on screen rather than
+quietly showing a different one. Opened from disk, it falls back to a copy baked
+into the page.
+
+## Adding a scenario
+
+Drop `scenarios/lunch.json` in the folder. It is live at `?s=lunch` immediately;
+no change to `index.html`. Names are limited to letters, digits, `-` and `_`.
+
+## URLs
+
+| Purpose | Address |
+|---|---|
+| Rise embed (default) | `https://beestonian.github.io/Taribelang_shift_notes/` |
+| Rise embed (named) | `https://beestonian.github.io/Taribelang_shift_notes/?s=lunch` |
+| Author the default | `.../?edit` |
+| Author a named one | `.../?s=lunch&edit` |
 
 ## Editing
 
-**Small text changes:** edit `scenario.json` here on GitHub and commit. Pages
-redeploys in about a minute and the Rise embed picks it up on next load.
+**Wording:** edit the JSON here on GitHub and commit. Pages redeploys in about a
+minute; the Rise embed picks it up on next load.
 
-**Structural changes:** open the live URL with `?edit` on the end. That opens
-the Switchback authoring canvas loaded with the live scenario. When you're
-done: Export → *Copy JSON only* → paste over `scenario.json` and commit.
+**Structure:** open the authoring URL above. Rearrange on the canvas, then
+Export, "Copy JSON only", and paste over the scenario file.
 
-If a banner says *"Restored the draft saved in this browser"*, click
-**Discard and reload published** first — otherwise you're editing a stale local
-draft rather than what's live.
+If a banner says "Restored the draft saved in this browser", click **Discard and
+reload published** first, or you are editing a stale local draft.
 
 ## The lock
 
-`scenario.json` contains `"locked": true`. That hides the **Build** button from
-learners in the embedded player. `?edit` still works for authors. Keep the flag
-when pasting new JSON over the file, or the button comes back for everyone.
+Each scenario carries `"locked": true`, which hides the **Build** button from
+learners. `?edit` still works for authors. Keep the flag when pasting new JSON.
 
-## Embedding in Rise
+## Theming
 
-Rise → Embed block:
-
-```html
-<iframe src="https://beestonian.github.io/Taribelang_shift_notes/" width="100%" height="760" style="border:0"></iframe>
-```
+Rise's CSS cannot cross the iframe boundary. Match it from inside the scenario
+JSON instead: `style` accepts `bg`, `surface`, `ink`, `ink-2`, `ink-3`, `accent`,
+`accent-ink`, `border`, `rule`, plus `headFont`, `bodyFont`, `googleFont` and
+`headWeight`. `customCss` takes raw CSS for anything else.

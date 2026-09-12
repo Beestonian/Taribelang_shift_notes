@@ -952,20 +952,41 @@ textarea{resize:vertical;min-height:64px}
   var run = { at: null, path: [], score: 0, lastFeedback: "", vars: {}, deltas: {} };
 
   /* ---------- data helpers ---------- */
+  /* Which scenario to load. ?s=<name> -> scenarios/<name>.json, otherwise
+     scenarios/default.json. The character whitelist is deliberate: no dots and
+     no slashes, so the parameter cannot be pointed outside the folder. */
+  function scenarioFile() {
+    var m = /[?&]s=([A-Za-z0-9_-]{1,40})(?:&|$)/.exec(location.search);
+    return m ? { path: "scenarios/" + m[1] + ".json", named: m[1] }
+             : { path: "scenarios/default.json", named: null };
+  }
+  function missingScenario(name) {
+    return { title: "Scenario not found", theme: "auto", locked: true, start: "s_missing",
+      scenes: { s_missing: { id: "s_missing", type: "ending", name: "Not found", x: 0, y: 0,
+        title: "Scenario not found",
+        body: "<p>This page asked for <code>" + String(name).replace(/[<>&]/g, "") +
+              "</code>, and no such scenario is published.</p><p>Check the <code>?s=</code> value in the address.</p>",
+        choices: [] } } };
+  }
   function readBaked() {
-    /* PATCH: when served over http(s), prefer a sibling scenario.json so the
-       scenario can be updated without re-exporting this player. Falls back to
-       the copy baked in below, so the file still works opened from disk. */
+    /* PATCH: when served over http(s), fetch the scenario alongside this file so
+       it can be updated without re-exporting the player. Falls back to the copy
+       baked in below, so the file still works opened from disk. */
+    var want = scenarioFile();
     if (location.protocol === "http:" || location.protocol === "https:") {
       try {
         var x = new XMLHttpRequest();
-        x.open("GET", "scenario.json?t=" + Date.now(), false);
+        x.open("GET", want.path + "?t=" + Date.now(), false);
         x.send(null);
         if (x.status >= 200 && x.status < 300) {
           var j = JSON.parse(x.responseText);
           if (j && j.scenes && typeof j.scenes === "object") return j;
         }
-      } catch (e) { /* fall through to the baked copy */ }
+        /* A named scenario that is missing should say so, not silently show another one. */
+        if (want.named) return missingScenario(want.named);
+      } catch (e) {
+        if (want.named) return missingScenario(want.named);
+      }
     }
     try { return JSON.parse(document.getElementById("scenario-data").textContent); }
     catch (e) { return { title: "Untitled scenario", theme: "auto", start: null, scenes: {} }; }
