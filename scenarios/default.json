@@ -159,7 +159,7 @@
       "x": 1060,
       "y": 140,
       "title": "You wait in the car",
-      "body": "<p>You wait. At 3:05 you get out and walk to the front doors.</p><p>Rachel has been sitting on a pallet by the loading door at the back since two o'clock. She always waits there — the front entrance is loud and there is nowhere to sit.</p><p>She rang the office at ten past two. It went to voicemail. She did not try again, because she assumed you were coming at three, which you were.</p><p>You leave at 3:20. Physio gives a fifteen minute grace period. You do not make it.</p>",
+      "body": "<p>You wait. At 3:05 you get out and walk to the front doors.</p><p>Rachel has been sitting on a pallet by the loading door at the back since two o'clock. She always waits there — the front is loud and there is nowhere to sit.</p><p>She rang the office at ten past two and got voicemail. She did not try again. The text she had said three o'clock, so she assumed her lift was running late.</p><p>You leave at 3:20. Physio gives a fifteen minute grace period. You do not make it.</p>",
       "image": "",
       "video": "",
       "choices": [
@@ -179,7 +179,7 @@
       "x": 1060,
       "y": 460,
       "title": "You go inside and ask",
-      "body": "<p>A supervisor points you round the back without looking up. \"She'll be on the pallet by the loading door. She's always there.\"</p><p>Rachel has been waiting since two. She finished early today — she does, some Wednesdays.</p><p>\"Danni knows,\" the supervisor says. \"Rachel told her ages ago.\"</p><p>You make physio with three minutes to spare.</p>",
+      "body": "<p>A supervisor points you round the back without looking up. \"She'll be on the pallet by the loading door. She's always there.\"</p><p>Rachel finished at two. She does some Wednesdays, depending on the deliveries.</p><p>\"Danni usually gets here about then,\" he says, and goes back to what he was doing.</p><p>You make physio with three minutes to spare.</p>",
       "image": "",
       "video": "",
       "choices": [
@@ -199,7 +199,7 @@
       "x": 1060,
       "y": 780,
       "title": "You ring the office",
-      "body": "<p>Someone answers and opens the file while you wait. The note says what you have already read.</p><p>They ring the garden centre, then ring you back at 3:09. Rachel waits at the loading door. She finished at two today.</p><p>You make physio, just.</p><p>That is nine minutes of someone else's afternoon spent answering a question one line in a note would have answered — and they only had those nine minutes because they happened to pick up.</p>",
+      "body": "<p>Someone answers and opens the file while you wait. The note says what you have already read.</p><p>They ring the garden centre, then ring you back at 3:09. Rachel waits at the loading door. She finished at two today.</p><p>\"That's odd,\" they say. \"The roster's always had her at three.\"</p><p>You make physio, just.</p>",
       "image": "",
       "video": "",
       "choices": [
@@ -253,7 +253,7 @@
       "x": 1900,
       "y": 300,
       "title": "Three things failed. None of them is a person.",
-      "body": "<p>Rachel finished at <strong>2:00</strong>. The roster said <strong>3:00</strong>. You arrived five minutes early.</p><p><strong>That hour was gone before you got there.</strong> You were not late.</p><p>Rachel rang the office at ten past two and reached voicemail. And weeks ago she told Danni where she waits, and that she sometimes finishes early.</p><p>Danni knew. Danni was sick on Wednesday.</p><hr><p><strong>The roster does not show that she finishes at 2:00 some weeks.</strong> Not yours to fix. Worth telling the office — section 5 is where you do that.</p><p><strong>The phone went to voicemail.</strong> Also not yours.</p><p><strong>And what Rachel told Danni stayed in Danni's head — because the old note had nowhere to put it.</strong> It was not a support. It was not a goal. Danni did what any of us would do with a useful fact and no box to put it in: she remembered it.</p><p>That is the one that changed. The headings are new because things like this were falling through.</p><hr><p>Writing it down would not have got Rachel to physio on time. The roster would still have been wrong. It would have sent you round the back at 2:56 instead of standing at the front until 3:05.</p><p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Drove Rachel to the garden centre for her 9:00 start. She waits at the loading door round the back when she finishes, not the front — the front is loud and there is nowhere to sit. Some Wednesdays she finishes at 2:00 instead of 3:00. Collected her at 3:05 and drove her to physio.</em></p><p>About a minute longer to write.</p><p><strong>A note does not fix a roster. It stops one person's knowledge leaving when they do.</strong></p>",
+      "body": "<p>Rachel finished at <strong>2:00</strong>. The roster said <strong>3:00</strong>.</p><p>Danni knew that. On the Wednesdays Rachel finishes early, Danni just turns up early — she has done for months. From where Danni stood there was never a problem to report. She was handling it.</p><p>So the roster still says 3:00, because nobody ever needed it to say anything else.</p><p>Then Danni got sick.</p><hr><p><strong>The roster does not show that Rachel finishes at 2:00 some weeks.</strong> Not yours to fix — but worth telling the office, and section 5 is where you do that.</p><p><strong>The phone went to voicemail when Rachel rang at ten past two.</strong> Also not yours.</p><p><strong>And Danni's memory was doing a job the system thought it was doing itself.</strong> The day she was away, the system fell back on what it actually knew — the roster — and the roster was wrong.</p><hr><p>Writing it down would not have got Rachel to physio on time. It would have sent you round the back at 2:56 instead of standing at the front until 3:05. And it would have told whoever sets the roster that three o'clock is wrong.</p><p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Drove Rachel to the garden centre for her 9:00 start. She waits at the loading door round the back when she finishes, not the front — the front is loud and there is nowhere to sit. Some Wednesdays she finishes at 2:00 instead of 3:00, depending on deliveries. Collected her at 3:05 and drove her to physio.</em></p><p>About a minute longer to write.</p><p><strong>A note is not for you. It is for the day you are not there.</strong></p>",
       "image": "",
       "video": "",
       "choices": []
