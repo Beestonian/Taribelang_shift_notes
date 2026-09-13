@@ -30,7 +30,13 @@
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Read the note", "target": "s_note", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "Read the note",
+          "target": "s_note",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "s_note": {
@@ -44,7 +50,13 @@
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Go and find her", "target": "q_arrive", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "Go and find her",
+          "target": "q_arrive",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "q_arrive": {
@@ -58,14 +70,66 @@
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Wait in the car — she'll come out", "target": "s_wait", "points": 0, "feedback": "",
-          "effects": [ { "varId": "var_wait", "op": "add", "amount": 25, "id": "f_wait" } ] },
-        { "id": "c2", "label": "Go inside and ask someone", "target": "s_inside", "points": 0, "feedback": "",
-          "effects": [ { "varId": "var_wait", "op": "add", "amount": 6, "id": "f_inside" } ] },
-        { "id": "c3", "label": "Ring the office", "target": "s_office", "points": 0, "feedback": "",
-          "effects": [ { "varId": "var_wait", "op": "add", "amount": 14, "id": "f_office" } ] },
-        { "id": "c4", "label": "Ring Rachel", "target": "s_ring", "points": 0, "feedback": "",
-          "effects": [ { "varId": "var_wait", "op": "add", "amount": 8, "id": "f_ring" } ] }
+        {
+          "id": "c1",
+          "label": "Wait in the car — she'll come out",
+          "target": "s_wait",
+          "points": 0,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 25,
+              "id": "f_wait"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "Go inside and ask someone",
+          "target": "s_inside",
+          "points": 0,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 6,
+              "id": "f_inside"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "Ring the office",
+          "target": "s_office",
+          "points": 0,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 14,
+              "id": "f_office"
+            }
+          ]
+        },
+        {
+          "id": "c4",
+          "label": "Ring Rachel",
+          "target": "s_ring",
+          "points": 0,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 8,
+              "id": "f_ring"
+            }
+          ]
+        }
       ]
     },
     "s_ring": {
@@ -79,7 +143,13 @@
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "So — what now?", "target": "q_arrive", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "So — what now?",
+          "target": "q_arrive",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "s_wait": {
@@ -93,7 +163,13 @@
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Continue", "target": "q_note", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "Continue",
+          "target": "q_note",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "s_inside": {
@@ -103,11 +179,17 @@
       "x": 1060,
       "y": 460,
       "title": "You go inside and ask",
-      "body": "<p>A supervisor points you round the back without looking up. \"She'll be on the pallet by the loading door. She's always there.\"</p><p>Rachel has been waiting since two. She finished early today — she does, some Wednesdays.</p><p>You make physio with three minutes to spare.</p><p>Nobody wrote any of this down. You found out because you asked a stranger who happened to know.</p>",
+      "body": "<p>A supervisor points you round the back without looking up. \"She'll be on the pallet by the loading door. She's always there.\"</p><p>Rachel has been waiting since two. She finished early today — she does, some Wednesdays.</p><p>\"Danni knows,\" the supervisor says. \"Rachel told her ages ago.\"</p><p>You make physio with three minutes to spare.</p>",
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Continue", "target": "q_note", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "Continue",
+          "target": "q_note",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "s_office": {
@@ -121,7 +203,13 @@
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Continue", "target": "q_note", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "Continue",
+          "target": "q_note",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "q_note": {
@@ -135,12 +223,27 @@
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "\"Collected Rachel from work and drove her to physio. All went well.\"", "target": "s_end", "points": 0,
-          "feedback": "\"All went well\" is your judgement, and the next worker cannot act on it. They still will not know where she waits, or that she sometimes finishes at two." },
-        { "id": "c2", "label": "\"Rachel waits on the pallet by the loading door at the back, not the front entrance. Some Wednesdays she finishes at 2:00 instead of 3:00. Collected her at 3:05 and drove her to physio.\"", "target": "s_end", "points": 3,
-          "feedback": "This is the one. Where she waits, when she finishes, what you did. The next worker drives straight round the back, and Rachel does not sit on a pallet for an hour." },
-        { "id": "c3", "label": "\"Rachel was annoyed about being kept waiting again.\"", "target": "s_end", "points": -2,
-          "feedback": "\"Annoyed\" is what you concluded, not what you saw — and it puts the problem on Rachel rather than on the missing information. The next worker now meets an annoyed woman before they meet Rachel." }
+        {
+          "id": "c1",
+          "label": "\"Collected Rachel from work and drove her to physio. All went well.\"",
+          "target": "s_end",
+          "points": 0,
+          "feedback": "\"All went well\" is your judgement, and the next worker cannot act on it. They still will not know where she waits, or that she sometimes finishes at two."
+        },
+        {
+          "id": "c2",
+          "label": "\"Rachel waits on the pallet by the loading door at the back, not the front entrance. Some Wednesdays she finishes at 2:00 instead of 3:00. Collected her at 3:05 and drove her to physio.\"",
+          "target": "s_end",
+          "points": 3,
+          "feedback": "This is the one. Where she waits, when she finishes, what you did. The next worker drives straight round the back, and Rachel does not sit on a pallet for an hour."
+        },
+        {
+          "id": "c3",
+          "label": "\"Rachel was annoyed about being kept waiting again.\"",
+          "target": "s_end",
+          "points": -2,
+          "feedback": "\"Annoyed\" is what you concluded, not what you saw — and it puts the problem on Rachel rather than on the missing information. The next worker now meets an annoyed woman before they meet Rachel."
+        }
       ]
     },
     "s_end": {
@@ -149,8 +252,8 @@
       "name": "Debrief",
       "x": 1900,
       "y": 300,
-      "title": "Nobody did anything wrong",
-      "body": "<p>Go back and count it.</p><p>Rachel finished at <strong>2:00</strong>. You were rostered for <strong>3:00</strong>. You arrived five minutes early.</p><p><strong>That hour was already gone before you got there.</strong> You were not late. She was not difficult. The office was on another call when she rang, the way offices are.</p><p>Every option you had cost something, because every option was a way of finding out at 2:55 what somebody could have written down last Wednesday in about nine words.</p><hr><p>Here is the note that would have prevented all of it:</p><p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Drove Rachel to the garden centre for her 9:00 start. She waits at the loading door round the back when she finishes, not the front — the front is loud and there is nowhere to sit. Some Wednesdays she finishes at 2:00 instead of 3:00. Collected her at 3:05 and drove her to physio.</em></p><p>Same shift. About a minute longer to write.</p><p><strong>Next Wednesday, yours is someone else's.</strong></p>",
+      "title": "Three things failed. One of them is yours.",
+      "body": "<p>Rachel finished at <strong>2:00</strong>. The roster said <strong>3:00</strong>. You arrived five minutes early.</p><p><strong>That hour was gone before you got there.</strong> You were not late.</p><p>Rachel rang the office at ten past two and reached voicemail. And weeks ago she told Danni where she waits, and that she sometimes finishes early. Danni knew.</p><p>Danni was sick on Wednesday.</p><hr><p><strong>The roster does not show that she finishes at 2:00 some weeks.</strong> That is not yours to fix. It is worth telling the office, and section 5 is where you do that.</p><p><strong>The phone went to voicemail.</strong> Also not yours.</p><p><strong>And what Rachel told Danni stayed in Danni's head.</strong> That one is the note.</p><hr><p>Writing it down would not have got Rachel to physio on time. The roster would still have been wrong. It would have sent you round the back at 2:56 instead of standing at the front until 3:05.</p><p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Drove Rachel to the garden centre for her 9:00 start. She waits at the loading door round the back when she finishes, not the front — the front is loud and there is nowhere to sit. Some Wednesdays she finishes at 2:00 instead of 3:00. Collected her at 3:05 and drove her to physio.</em></p><p>About a minute longer to write.</p><p><strong>A note does not fix a roster. It stops one person's knowledge leaving when they do.</strong></p>",
       "image": "",
       "video": "",
       "choices": []
