@@ -14,8 +14,8 @@
       "max": 180,
       "decimals": 0,
       "show": true,
-      "x": 960,
-      "y": 880
+      "x": 842,
+      "y": 995
     }
   },
   "scenes": {
@@ -23,48 +23,36 @@
       "id": "s_open",
       "type": "content",
       "name": "15:00, Wednesday",
-      "x": 100,
-      "y": 340,
+      "x": -442,
+      "y": 313,
       "title": "15:00, Wednesday",
-      "body": "<p>You are covering a shift for Danni, who called in sick.</p><p><strong>Rachael, 24.</strong> She works Wednesdays at a garden centre on the north side of town. The roster says collect her at <strong>3:00</strong> and drive her to physio at <strong>3:30</strong>.</p><p>You have never met her. Her photo is on her profile, so you know who you are looking for. You are parked where you can see the front doors.</p><p>It is three o'clock. The only thing you have is last week's note.</p>",
+      "body": "<p>You are covering a shift for Danni, who called in sick.</p><p><strong>Rachael, 24.</strong> She works Wednesdays at a garden centre on the north side of town. The roster says collect her at <strong>3:00</strong> and drive her to physio at <strong>3:30</strong>.</p><p>This is your first shift with her. Her photo is on her profile, so you know who you are looking for. You are parked where you can see the front doors of the garden centre.</p><p>It is three o'clock. You decide to check the previous shift worker's note for this morning's shift.</p>",
       "image": "images/B1_scene_s_open.png",
       "video": "",
       "choices": [
-        {
-          "id": "c1",
-          "label": "Read the note",
-          "target": "s_note",
-          "points": 0,
-          "feedback": ""
-        }
+        { "id": "c1", "label": "Read the note", "target": "s_note", "points": 0, "feedback": "" }
       ]
     },
     "s_note": {
       "id": "s_note",
       "type": "content",
       "name": "The note",
-      "x": 400,
-      "y": 340,
+      "x": -68,
+      "y": 440,
       "title": "Last Wednesday's note",
-      "body": "<p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Took Rachael to work. All good. She was a little fidgety on the way but we talked about music and she relaxed a bit.</em></p><p>That is the whole note. Twenty-four words, and not one of them tells you where she waits.</p>",
+      "body": "<p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Took Rachael to work. All good. She was a little fidgety on the way but we talked about music and she relaxed a bit.</em></p><p><br></p>",
       "image": "images/B2_scene_s_note.png",
       "video": "",
       "choices": [
-        {
-          "id": "c1",
-          "label": "Open her profile",
-          "target": "s_profile",
-          "points": 0,
-          "feedback": ""
-        }
+        { "id": "c1", "label": "Open her profile", "target": "s_profile", "points": 0, "feedback": "" }
       ]
     },
     "q_arrive": {
       "id": "q_arrive",
       "type": "question",
       "name": "She doesn't come out",
-      "x": 960,
-      "y": 340,
+      "x": 812,
+      "y": 403,
       "title": "Nobody comes out",
       "body": "<p>Ten past three. Staff come and go through the front doors. None of them is Rachael.</p><p>Physio is a twelve minute drive and they give fifteen minutes' grace. Your next client is at four, across town.</p><p><strong>What do you do?</strong></p>",
       "image": "images/B3_scene_q_arrive.png",
@@ -76,14 +64,7 @@
           "target": "s_ask",
           "points": 0,
           "feedback": "",
-          "effects": [
-            {
-              "varId": "var_wait",
-              "op": "add",
-              "amount": 12,
-              "id": "f_ask"
-            }
-          ]
+          "effects": [ { "varId": "var_wait", "op": "add", "amount": 12, "id": "f_ask" } ]
         },
         {
           "id": "c2",
@@ -91,14 +72,7 @@
           "target": "s_ring",
           "points": 0,
           "feedback": "",
-          "effects": [
-            {
-              "varId": "var_wait",
-              "op": "add",
-              "amount": 8,
-              "id": "f_ring"
-            }
-          ]
+          "effects": [ { "varId": "var_wait", "op": "add", "amount": 8, "id": "f_ring" } ]
         },
         {
           "id": "c3",
@@ -106,14 +80,7 @@
           "target": "s_wait",
           "points": 0,
           "feedback": "",
-          "effects": [
-            {
-              "varId": "var_wait",
-              "op": "add",
-              "amount": 30,
-              "id": "f_wait"
-            }
-          ]
+          "effects": [ { "varId": "var_wait", "op": "add", "amount": 30, "id": "f_wait" } ]
         },
         {
           "id": "c4",
@@ -121,14 +88,7 @@
           "target": "s_noshow",
           "points": -3,
           "feedback": "",
-          "effects": [
-            {
-              "varId": "var_wait",
-              "op": "add",
-              "amount": 40,
-              "id": "f_noshow"
-            }
-          ]
+          "effects": [ { "varId": "var_wait", "op": "add", "amount": 40, "id": "f_noshow" } ]
         }
       ]
     },
@@ -136,20 +96,14 @@
       "id": "s_ask",
       "type": "content",
       "name": "You go in and ask",
-      "x": 1340,
-      "y": -60,
+      "x": 1326,
+      "y": 102,
       "title": "You go in and ask",
       "body": "<p>The woman on the register is helpful. She picks up the handset behind the counter.</p><p><em>\"Rachael to the front counter please, Rachael to the front counter, your lift is here.\"</em></p><p>It carries the length of the shop. A bloke stacking mulch looks up. Two customers in the queue look up.</p><p>Someone goes out the back to fetch her, and she comes the whole way through the shop to the front counter, past the registers, past the queue, with her bag on her shoulder.</p><p>She does not look at you until you are both outside.</p><p>You make physio with three minutes to spare.</p>",
       "image": "images/B4_scene_s_ask.png",
       "video": "",
       "choices": [
-        {
-          "id": "c1",
-          "label": "Continue",
-          "target": "q_note",
-          "points": 0,
-          "feedback": ""
-        }
+        { "id": "c1", "label": "Continue", "target": "q_note", "points": 0, "feedback": "" }
       ]
     },
     "s_ring": {
@@ -163,13 +117,7 @@
       "image": "images/B5_scene_s_ring.png",
       "video": "",
       "choices": [
-        {
-          "id": "c1",
-          "label": "So — what now?",
-          "target": "q_arrive",
-          "points": 0,
-          "feedback": ""
-        }
+        { "id": "c1", "label": "So — what now?", "target": "q_arrive", "points": 0, "feedback": "" }
       ]
     },
     "s_wait": {
@@ -183,33 +131,21 @@
       "image": "images/B6_scene_s_wait.png",
       "video": "",
       "choices": [
-        {
-          "id": "c1",
-          "label": "Continue",
-          "target": "q_note",
-          "points": 0,
-          "feedback": ""
-        }
+        { "id": "c1", "label": "Continue", "target": "q_note", "points": 0, "feedback": "" }
       ]
     },
     "s_noshow": {
       "id": "s_noshow",
       "type": "content",
       "name": "You log a no-show",
-      "x": 1340,
-      "y": 980,
+      "x": 1335,
+      "y": 849,
       "title": "You log it as a no-show",
       "body": "<p>It is the defensible call. You waited ten minutes, she did not come out, and you have a client at four.</p><p>You tap <em>client not present</em> and drive across town.</p><p>Rachael sat on the pallet until twenty to four. Then she walked home, because the office had not picked up and she did not have your number.</p><p><strong>She was there the whole time.</strong></p><p>The file now says she was not. At her next plan review, that is one more line saying this support is not being used.</p>",
       "image": "images/B7_scene_s_noshow.png",
       "video": "",
       "choices": [
-        {
-          "id": "c1",
-          "label": "Continue",
-          "target": "q_note",
-          "points": 0,
-          "feedback": ""
-        }
+        { "id": "c1", "label": "Continue", "target": "q_note", "points": 0, "feedback": "" }
       ]
     },
     "q_note": {
@@ -250,10 +186,10 @@
       "id": "s_end",
       "type": "ending",
       "name": "Debrief",
-      "x": 2180,
-      "y": 340,
+      "x": 2241,
+      "y": 336,
       "title": "There was no good option at ten past three",
-      "body": "<p>The roster was right. You were on time. Rachael finished when she always finishes and waited where she always waits.</p><p>Every option cost her something.</p><p>Asking inside got her to physio — and walked her the length of the shop past the registers, which is the exact thing she goes out the back to avoid. Waiting cost her the appointment. The office could not help, because nobody had written it down for them either. And a no-show put something in her file that was not true.</p><hr><p><strong>Danni never wrote it down.</strong> Danni just goes round the back. After a few months it stopped being a thing you would think to mention — it was simply how the shift went.</p><p>That is the trap. The things you learn about someone stop feeling like information once you know them. They start feeling like the job.</p><p>They are not the job. They are the part of the job that leaves with you.</p><hr><p>Here is the note that would have prevented all of it:</p><p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Drove Rachael to the garden centre for her 9:00 start. She works in the back and waits by the loading door when she finishes, not the front entrance — she would rather not be collected where the shop can see. Collected her at 3:05 and drove her to physio.</em></p><p>Thirty-four words. About a minute.</p><p>It does not just save the next worker ten minutes in a car park. It means Rachael never has to choose between being on time and being seen.</p><p><strong>A note is not for you. It is for the day you are not there.</strong></p>",
+      "body": "<p>The roster was right. You were on time. Rachael finished when she always finishes and waited where she always waits.</p><p>Every option cost her something.</p><p>Asking inside got her to physio — and walked her the length of the shop past the registers, which is the exact thing she goes out the back to avoid. Waiting cost her the appointment. The office could not help, because nobody had written it down for them either. And a no-show put something in her file that was not true.</p><hr><p><strong>Danni never wrote it down.</strong> Danni just goes round the back. After a few months it became an unremarkable habit, so it did not get written.</p><p>This is the trap — notes that feel unremarkable to you could be essential in ways we can't predict.</p><hr><p>Here is the note that would have prevented all of it:</p><p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Drove Rachael to the garden centre for her 9:00 start. She works in the back and waits by the loading door when she finishes, not the front entrance — she would rather not be collected where the shop can see. Collected her at 3:05 and drove her to physio.</em></p><p>This note takes a couple of minutes to write, and it could have saved Rachael so much.</p><p><strong>A note is not for you. It is for the day you are not there.</strong></p>",
       "image": "images/B10_scene_s_end.png",
       "video": "",
       "choices": []
@@ -262,21 +198,17 @@
       "id": "s_profile",
       "type": "content",
       "name": "Her profile",
-      "x": 550,
-      "y": 340,
+      "x": 405,
+      "y": 366,
       "title": "You open her profile",
-      "body": "<p>While you wait, you open Rachael's profile on the app.</p><p>It is a good file. Service agreement, current plan, physio referral — all dated this year.</p><p><strong>Goals.</strong> Keep working Wednesdays at the garden centre. Finish the physio program on her left shoulder. Build up to using the bus on her own.</p><p><strong>Risks &amp; Health.</strong> Shoulder injury in July. No medications. No allergies.</p><p>And one line under notes: <em>Rachael can find busy or crowded environments difficult.</em></p><p>You put your phone down and watch the doors.</p>",
+      "body": "<p>While you wait, you open Rachael's profile on the app.</p><p><i>It is a good file. Service agreement, current plan, physio referral — all dated this year.</i></p><p><i><strong>Goals.</strong> Keep working Wednesdays at the garden centre. Finish the physio program on her left shoulder. Build up to using the bus on her own.</i></p><p><i><strong>Risks &amp; Health.</strong> Shoulder injury in July. No medications. No allergies.</i></p><p><i>Rachael can find busy or crowded environments difficult.</i></p><p>You put your phone down and watch the doors.</p>",
       "image": "images/B8_scene_s_profile.png",
       "video": "",
       "choices": [
-        {
-          "id": "c1",
-          "label": "Keep watching",
-          "target": "q_arrive",
-          "points": 0,
-          "feedback": ""
-        }
+        { "id": "c1", "label": "Keep watching", "target": "q_arrive", "points": 0, "feedback": "" }
       ]
     }
-  }
+  },
+  "reroutes": {},
+  "style": {}
 }
