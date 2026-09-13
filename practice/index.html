@@ -52,7 +52,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
 /* card */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px 24px 22px}
 h1{font-size:27px;line-height:1.25;margin:0 0 4px;letter-spacing:-.01em}
-h2.step-title{font-size:22px;line-height:1.3;margin:0 0 4px;letter-spacing:-.01em;color:var(--ink)}
+h2.step-title{font-size:23px;line-height:1.3;margin:0 0 14px;letter-spacing:-.01em;color:var(--ink)}
 .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
 .sub{color:var(--ink-2);font-size:15.5px;margin:0 0 18px}
 .sub p{margin:0 0 9px}.sub p:last-child{margin:0}
@@ -731,7 +731,6 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
       app.appendChild(prog);
 
       var card = el("section","card");
-      card.appendChild(el("p","eyebrow","Step " + (pos.s+1) + " &middot; " + esc(STEP_TITLES[key])));
       card.appendChild(el("h2","step-title", esc(STEP_TITLES[key])));
       var body = el("div",null,"");
       card.appendChild(body);
