@@ -1,0 +1,64 @@
+{
+  "formatVersion": 1,
+  "title": "Find the words",
+  "activityId": "https://beestonian.github.io/Taribelang_shift_notes/marking/",
+  "passRatio": 0.8,
+  "intro": {
+    "heading": "Finding the words that aren't there",
+    "body": "<p>You'll read three shift notes. <strong>Tap every word or phrase a camera couldn't have recorded.</strong></p><p>A camera records what it sees and hears. It can't record a mood, a motive, or a reason.</p><p>No time limit, and no penalty for trying again.</p>"
+  },
+  "notes": [
+    {
+      "id": "note-1",
+      "label": "Note 1",
+      "text": "Assisted Mary with her shopping. She was *in a good mood* and *clearly enjoyed* being out. Mary chose her own items and paid at the self-checkout without help. *Seemed much happier* than last week.",
+      "feedback": {
+        "in a good mood": "A conclusion. What did Mary do that gave you that impression? Write that instead.",
+        "clearly enjoyed": "\"Clearly\" is doing a lot of work here. It's your read, not a recording.",
+        "Seemed much happier": "Compared to what, and measured how? This is the kind of line that follows someone around their file."
+      },
+      "trapFeedback": {
+        "chose": "This one's fine. A camera sees someone choosing items off a shelf.",
+        "paid": "Fine — and specific. It tells the next worker she handled the checkout herself.",
+        "self-checkout": "Keep it. It's exactly the detail that shows what she can do."
+      }
+    },
+    {
+      "id": "note-2",
+      "label": "Note 2",
+      "text": "David was *uncooperative* this morning. *His autism makes transitions difficult*, so he *refused* breakfast and stayed in his room for 20 minutes. *Eventually* came out and ate half a slice of toast. *Attitude improved* by the end of the shift.",
+      "feedback": {
+        "uncooperative": "This describes your experience of David, not David's behaviour. \"Stayed in his room for 20 minutes\" is already there and does the job.",
+        "His autism makes transitions difficult": "Two problems. It states a cause you didn't witness, and the label means something different to every worker who reads it. What David actually did is already in the next clause.",
+        "refused": "Arguable, and that's why the pass mark isn't 100%. It describes an action but imports an intention. \"Did not eat breakfast\" asserts less.",
+        "Eventually": "Carries a sigh. How long was it? You already know: twenty minutes.",
+        "Attitude improved": "Improved how? A camera would have recorded him coming out and eating. Write that."
+      },
+      "trapFeedback": {
+        "20": "Keep it. A number is the most useful thing in this note.",
+        "minutes": "Keep it. A number is the most useful thing in this note.",
+        "toast": "Fine. Specific, countable, and it tells the next worker he ate something."
+      }
+    },
+    {
+      "id": "note-3",
+      "label": "Note 3",
+      "text": "Took John to his appointment. He was *anxious* in the car, tapping his hands on his knees the whole way. Waited 40 minutes. John told me he did not want to go back.",
+      "feedback": {
+        "anxious": "The only one in this note. And look what's sitting right next to it — you already wrote the observation."
+      },
+      "trapFeedback": {
+        "tapping": "This one's fine. A camera records tapping hands. This is the observation that supports \"anxious\" — keep it, and drop the label.",
+        "hands": "This one's fine. A camera records tapping hands. This is the observation that supports \"anxious\" — keep it, and drop the label.",
+        "knees": "This one's fine. A camera records tapping hands. This is the observation that supports \"anxious\" — keep it, and drop the label.",
+        "told": "Keep it. He said it; you heard it. Reported speech is recordable.",
+        "want": "Keep it. That's what John told you, not what you concluded."
+      }
+    }
+  ],
+  "results": {
+    "pass": "That's the skill. You're finding the places where a conclusion slipped in — which is exactly what you'll be doing to your own notes from now on.",
+    "fail": "Have another go. The question for every word is the same one: could a camera have recorded this?",
+    "perfect": "All of them, and you left the observations alone. That second part is the harder half."
+  }
+}

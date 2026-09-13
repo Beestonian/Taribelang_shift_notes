@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Find the words</title>
+<style>
+:root{
+  --ground:#EEF1F5; --surface:#FFFFFF; --surface-2:#F6F8FB;
+  --line:#D2DAE4; --ink:#16202B; --ink-2:#55677A; --ink-3:#8493A4;
+  --accent:#2F6F5E; --accent-ink:#FFFFFF;
+  --mark:#FBE6C8; --mark-line:#D9A441;
+  --ok:#1C7A5E; --ok-soft:#E3F3EC;
+  --bad:#B03A2B; --bad-soft:#FBE9E6;
+  --sans:"IBM Plex Sans",ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#10151C; --surface:#171E27; --surface-2:#1D2530;
+    --line:#2B3642; --ink:#E6ECF3; --ink-2:#A7B6C6; --ink-3:#7A8B9C;
+    --accent:#4FA88E; --accent-ink:#08130F;
+    --mark:#5A4620; --mark-line:#C6903A;
+    --ok:#5FC2A1; --ok-soft:#17332A;
+    --bad:#E2887A; --bad-soft:#361F1C;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#10151C; --surface:#171E27; --surface-2:#1D2530;
+  --line:#2B3642; --ink:#E6ECF3; --ink-2:#A7B6C6; --ink-3:#7A8B9C;
+  --accent:#4FA88E; --accent-ink:#08130F;
+  --mark:#5A4620; --mark-line:#C6903A;
+  --ok:#5FC2A1; --ok-soft:#17332A;
+  --bad:#E2887A; --bad-soft:#361F1C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding:24px 18px 64px}
+h1{font-size:24px;margin:0 0 6px}
+.lede{color:var(--ink-2);font-size:15px;margin:0 0 22px}
+.lede p{margin:0 0 8px}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:0 0 16px}
+.note-label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.body{font-size:17px;line-height:2.05}
+.tok{
+  font:inherit;color:inherit;background:none;border:0;border-radius:4px;
+  padding:2px 1px;margin:0;cursor:pointer;
+}
+.tok:hover{background:var(--surface-2)}
+.tok:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tok[aria-pressed="true"]{background:var(--mark);box-shadow:inset 0 -2px 0 var(--mark-line)}
+.checked .tok{cursor:default}
+.checked .tok.hit{background:var(--ok-soft);box-shadow:inset 0 -2px 0 var(--ok)}
+.checked .tok.miss{background:transparent;box-shadow:inset 0 -2px 0 var(--bad);text-decoration:underline dotted var(--bad)}
+.checked .tok.wrong{background:var(--bad-soft);box-shadow:inset 0 -2px 0 var(--bad)}
+.fb{margin:12px 0 0;padding:0;list-style:none;font-size:14px}
+.fb li{padding:8px 10px;border-radius:6px;margin:6px 0;background:var(--surface-2);color:var(--ink-2)}
+.fb li b{color:var(--ink)}
+.fb li.good{background:var(--ok-soft)}
+.fb li.bad{background:var(--bad-soft)}
+.bar{position:sticky;bottom:0;background:var(--ground);padding:14px 0 6px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);margin-top:20px}
+button.btn{font:inherit;font-size:15px;padding:10px 16px;border-radius:7px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+button.btn:hover{border-color:var(--ink-3)}
+button.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent;font-weight:600}
+button.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.score{margin-left:auto;font-size:15px;color:var(--ink-2)}
+.score b{color:var(--ink);font-size:17px}
+.verdict{margin:18px 0 0;padding:14px 16px;border-radius:8px;font-size:15px}
+.verdict.pass{background:var(--ok-soft);border:1px solid var(--ok)}
+.verdict.fail{background:var(--surface-2);border:1px solid var(--line)}
+details.xapi{margin-top:26px;font-size:13px;color:var(--ink-2)}
+details.xapi summary{cursor:pointer;padding:8px 0;color:var(--ink-3)}
+details.xapi pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;overflow:auto;max-height:340px;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--ink-2)}
+.err{background:var(--bad-soft);border:1px solid var(--bad);border-radius:8px;padding:16px;font-size:15px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><p class="lede">Loading…</p></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ------------------------------------------------------------------
+     xAPI. There is no LRS to send to yet, so statements are built to
+     spec, kept in memory, mirrored to localStorage and shown in the
+     panel at the foot of the page. Set LRS below and they POST instead.
+     ------------------------------------------------------------------ */
+  var LRS = null;            // e.g. {endpoint:"https://…/xAPI/", auth:"Basic …"}
+  var STORE_KEY = "xapi:marking:statements";
+  var statements = [];
+
+  function actorId(){
+    var k="xapi:actor", v=null;
+    try{ v = localStorage.getItem(k); }catch(e){}
+    if(!v){
+      v = "anon-" + Math.random().toString(36).slice(2,10);
+      try{ localStorage.setItem(k,v); }catch(e){}
+    }
+    return v;
+  }
+  function actor(){
+    return { objectType:"Agent", name:"Anonymous learner",
+             account:{ homePage:location.origin + location.pathname, name:actorId() } };
+  }
+  function iso(ms){ // xAPI durations are ISO 8601
+    var s = Math.max(0, ms/1000);
+    return "PT" + (Math.round(s*100)/100) + "S";
+  }
+  function emit(verbId, verbLabel, extra){
+    var st = {
+      id: (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now())+Math.random(),
+      actor: actor(),
+      verb: { id: verbId, display: { "en-US": verbLabel } },
+      object: extra.object,
+      timestamp: new Date().toISOString(),
+      version: "1.0.3"
+    };
+    if(extra.result)  st.result  = extra.result;
+    if(extra.context) st.context = extra.context;
+    statements.push(st);
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(statements)); }catch(e){}
+    if(window.console && console.debug) console.debug("[xAPI]", verbLabel, st);
+    if(LRS && LRS.endpoint){
+      try{
+        fetch(LRS.endpoint + "statements", {
+          method:"POST",
+          headers:{ "Content-Type":"application/json", "X-Experience-API-Version":"1.0.3",
+                    "Authorization": LRS.auth || "" },
+          body: JSON.stringify(st)
+        }).catch(function(){});
+      }catch(e){}
+    }
+    renderXapi();
+    return st;
+  }
+
+  var V = {
+    initialized:"http://adlnet.gov/expapi/verbs/initialized",
+    answered:"http://adlnet.gov/expapi/verbs/answered",
+    completed:"http://adlnet.gov/expapi/verbs/completed",
+    passed:"http://adlnet.gov/expapi/verbs/passed",
+    failed:"http://adlnet.gov/expapi/verbs/failed"
+  };
+
+  /* ---------------- content ---------------- */
+  var DATA=null, started=Date.now();
+
+  function load(){
+    try{
+      var x=new XMLHttpRequest();
+      x.open("GET","notes.json?t="+Date.now(),false);
+      x.send(null);
+      if(x.status>=200 && x.status<300) return JSON.parse(x.responseText);
+    }catch(e){}
+    return null;
+  }
+
+  /* Tokenise: *starred phrases* are single markable targets; everything
+     else splits into individual words, each of which is also markable.
+     Deciding on every word in turn is the point of the exercise. */
+  function tokenise(text){
+    var out=[], parts=text.split(/(\*[^*]+\*)/);
+    parts.forEach(function(p){
+      if(!p) return;
+      if(p.charAt(0)==="*" && p.charAt(p.length-1)==="*"){
+        out.push({ t:p.slice(1,-1), target:true });
+      } else {
+        p.split(/(\s+)/).forEach(function(w){
+          if(!w) return;
+          if(/^\s+$/.test(w)) out.push({ space:w });
+          else out.push({ t:w, target:false });
+        });
+      }
+    });
+    return out;
+  }
+  function bare(s){ return String(s).replace(/[^A-Za-z0-9'-]/g,"").toLowerCase(); }
+
+  /* ---------------- state ---------------- */
+  var notes=[], checked=false;
+
+  function build(){
+    notes = DATA.notes.map(function(n){
+      return { def:n, toks:tokenise(n.text).map(function(tk){ return Object.assign({},tk,{on:false}); }) };
+    });
+  }
+
+  function totals(){
+    var targets=0, hit=0, wrong=0;
+    notes.forEach(function(n){ n.toks.forEach(function(tk){
+      if(tk.space) return;
+      if(tk.target){ targets++; if(tk.on) hit++; }
+      else if(tk.on) wrong++;
+    });});
+    var raw = Math.max(0, hit - wrong);
+    return { targets:targets, hit:hit, wrong:wrong, raw:raw,
+             scaled: targets? raw/targets : 0 };
+  }
+
+  function responsePattern(){
+    var ids=[]; notes.forEach(function(n){ n.toks.forEach(function(tk,i){
+      if(tk.target) ids.push(n.def.id+":"+i);
+    });}); return ids.join("[,]");
+  }
+  function responseGiven(){
+    var ids=[]; notes.forEach(function(n){ n.toks.forEach(function(tk,i){
+      if(tk.on) ids.push(n.def.id+":"+i);
+    });}); return ids.join("[,]");
+  }
+  function objectDef(){
+    return {
+      id: DATA.activityId,
+      definition: {
+        type:"http://adlnet.gov/expapi/activities/cmi.interaction",
+        name:{ "en-US": DATA.title },
+        description:{ "en-US":"Mark every word or phrase a camera could not have recorded." },
+        interactionType:"choice",
+        correctResponsesPattern:[ responsePattern() ]
+      }
+    };
+  }
+
+  /* ---------------- render ---------------- */
+  var app=document.getElementById("app");
+
+  function render(){
+    app.innerHTML="";
+    var h=document.createElement("h1"); h.textContent=DATA.intro.heading; app.appendChild(h);
+    var l=document.createElement("div"); l.className="lede"; l.innerHTML=DATA.intro.body; app.appendChild(l);
+
+    notes.forEach(function(n){
+      var box=document.createElement("section");
+      box.className="note" + (checked?" checked":"");
+      var lab=document.createElement("div"); lab.className="note-label"; lab.textContent=n.def.label;
+      box.appendChild(lab);
+
+      var body=document.createElement("p"); body.className="body";
+      n.toks.forEach(function(tk,i){
+        if(tk.space){ body.appendChild(document.createTextNode(tk.t||" ")); return; }
+        var b=document.createElement("button");
+        b.type="button"; b.className="tok"; b.textContent=tk.t;
+        b.setAttribute("aria-pressed", tk.on?"true":"false");
+        if(checked){
+          b.disabled=true;
+          if(tk.target && tk.on) b.classList.add("hit");
+          else if(tk.target && !tk.on) b.classList.add("miss");
+          else if(!tk.target && tk.on) b.classList.add("wrong");
+        } else {
+          b.addEventListener("click", function(){
+            tk.on=!tk.on; b.setAttribute("aria-pressed", tk.on?"true":"false");
+            updateScore();
+          });
+        }
+        body.appendChild(b);
+        body.appendChild(document.createTextNode(" "));
+      });
+      box.appendChild(body);
+
+      if(checked){
+        var ul=document.createElement("ul"); ul.className="fb"; var any=false;
+        n.toks.forEach(function(tk){
+          if(tk.space) return;
+          var fb=null, cls="";
+          if(tk.target){
+            fb = n.def.feedback && n.def.feedback[tk.t];
+            cls = tk.on ? "good" : "bad";
+            if(!tk.on && !fb) fb = "You left this one. It states something the worker concluded rather than saw.";
+          } else if(tk.on){
+            var key = bare(tk.t);
+            fb = n.def.trapFeedback && (n.def.trapFeedback[tk.t] || n.def.trapFeedback[key]);
+            if(!fb) fb = "A camera could have recorded this. Leave it in — it's the kind of detail the next worker can act on.";
+            cls = "bad";
+          }
+          if(fb){ any=true;
+            var li=document.createElement("li"); li.className=cls;
+            li.innerHTML = "<b>" + tk.t.replace(/[<>&]/g,"") + "</b> — " + fb;
+            ul.appendChild(li);
+          }
+        });
+        if(any) box.appendChild(ul);
+      }
+      app.appendChild(box);
+    });
+
+    var bar=document.createElement("div"); bar.className="bar";
+    if(!checked){
+      bar.appendChild(btn("Check my answers","primary",check));
+    } else {
+      bar.appendChild(btn("Try again","",reset));
+      bar.appendChild(btn("Show me the answers","",showAll));
+    }
+    var sc=document.createElement("div"); sc.className="score"; sc.id="score";
+    bar.appendChild(sc);
+    app.appendChild(bar);
+
+    if(checked){
+      var t=totals(), pass=t.scaled>=DATA.passRatio;
+      var v=document.createElement("div");
+      v.className="verdict "+(pass?"pass":"fail");
+      v.innerHTML = pass ? (t.raw===t.targets ? DATA.results.perfect : DATA.results.pass) : DATA.results.fail;
+      app.appendChild(v);
+    }
+
+    var d=document.createElement("details"); d.className="xapi"; d.id="xapi";
+    d.innerHTML='<summary>xAPI statements generated by this activity</summary><pre id="xapi-log"></pre>';
+    app.appendChild(d);
+    renderXapi(); updateScore();
+  }
+
+  function btn(label,cls,fn){
+    var b=document.createElement("button");
+    b.type="button"; b.className="btn "+(cls||""); b.textContent=label;
+    b.addEventListener("click",fn); return b;
+  }
+
+  function updateScore(){
+    var el=document.getElementById("score"); if(!el) return;
+    var t=totals();
+    el.innerHTML = checked
+      ? "<b>"+t.raw+" / "+t.targets+"</b> &nbsp;·&nbsp; pass mark "+Math.round(DATA.passRatio*100)+"%"
+      : t.hit+t.wrong ? (t.hit+t.wrong)+" marked" : "";
+  }
+
+  function renderXapi(){
+    var pre=document.getElementById("xapi-log"); if(!pre) return;
+    pre.textContent = statements.length
+      ? JSON.stringify(statements, null, 2)
+      : "No statements yet. One is sent on load, one each time you check your answers.";
+  }
+
+  function check(){
+    checked=true;
+    var t=totals(), pass=t.scaled>=DATA.passRatio;
+    emit(V.answered,"answered",{
+      object: objectDef(),
+      result: {
+        score:{ raw:t.raw, min:0, max:t.targets, scaled: Math.round(t.scaled*1000)/1000 },
+        success: pass, completion: true,
+        response: responseGiven(),
+        duration: iso(Date.now()-started),
+        extensions:{
+          "https://beestonian.github.io/x/marked-correctly": t.hit,
+          "https://beestonian.github.io/x/marked-incorrectly": t.wrong,
+          "https://beestonian.github.io/x/targets": t.targets
+        }
+      },
+      context:{ contextActivities:{ parent:[{ id:"https://beestonian.github.io/Taribelang_shift_notes/",
+        definition:{ name:{"en-US":"Shift notes module"} } }] } }
+    });
+    emit(pass?V.passed:V.failed, pass?"passed":"failed", {
+      object: objectDef(),
+      result:{ score:{ raw:t.raw, min:0, max:t.targets, scaled: Math.round(t.scaled*1000)/1000 },
+               success: pass, completion: true, duration: iso(Date.now()-started) }
+    });
+    if(pass) emit(V.completed,"completed",{ object: objectDef(),
+      result:{ completion:true, success:true, duration: iso(Date.now()-started) } });
+    render();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function reset(){
+    checked=false; started=Date.now();
+    notes.forEach(function(n){ n.toks.forEach(function(tk){ tk.on=false; }); });
+    render();
+  }
+  function showAll(){
+    notes.forEach(function(n){ n.toks.forEach(function(tk){ tk.on=!!tk.target; }); });
+    checked=true; render();
+  }
+
+  /* ---------------- boot ---------------- */
+  DATA = load();
+  if(!DATA){
+    app.innerHTML = '<div class="err"><b>Could not load the activity.</b><br>' +
+      'This page needs <code>notes.json</code> alongside it, served over http or https. ' +
+      'Opened straight from disk, the browser blocks the request.</div>';
+    return;
+  }
+  build();
+  render();
+  emit(V.initialized,"initialized",{ object: objectDef() });
+})();
+</script>
+</body>
+</html>
