@@ -27,7 +27,7 @@
       "y": 340,
       "title": "15:00, Wednesday",
       "body": "<p>You are covering a shift for Danni, who called in sick.</p><p><strong>Rachael, 24.</strong> She works Wednesdays at a garden centre on the north side of town. The roster says collect her at <strong>3:00</strong> and drive her to physio at <strong>3:30</strong>.</p><p>You have never met her. Her photo is on her profile, so you know who you are looking for. You are parked where you can see the front doors.</p><p>It is three o'clock. The only thing you have is last week's note.</p>",
-      "image": "",
+      "image": "images/B1_scene_s_open.png",
       "video": "",
       "choices": [
         {
@@ -47,7 +47,7 @@
       "y": 340,
       "title": "Last Wednesday's note",
       "body": "<p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Took Rachael to work. All good. She was a little fidgety on the way but we talked about music and she relaxed a bit.</em></p><p>That is the whole note. Twenty-four words, and not one of them tells you where she waits.</p>",
-      "image": "",
+      "image": "images/B2_scene_s_note.png",
       "video": "",
       "choices": [
         {
@@ -67,7 +67,7 @@
       "y": 340,
       "title": "Nobody comes out",
       "body": "<p>Ten past three. Staff come and go through the front doors. None of them is Rachael.</p><p>Physio is a twelve minute drive and they give fifteen minutes' grace. Your next client is at four, across town.</p><p><strong>What do you do?</strong></p>",
-      "image": "",
+      "image": "images/B3_scene_q_arrive.png",
       "video": "",
       "choices": [
         {
@@ -140,7 +140,7 @@
       "y": -60,
       "title": "You go in and ask",
       "body": "<p>The woman on the register is helpful. She picks up the handset behind the counter.</p><p><em>\"Rachael to the front counter please, Rachael to the front counter, your lift is here.\"</em></p><p>It carries the length of the shop. A bloke stacking mulch looks up. Two customers in the queue look up.</p><p>Someone goes out the back to fetch her, and she comes the whole way through the shop to the front counter, past the registers, past the queue, with her bag on her shoulder.</p><p>She does not look at you until you are both outside.</p><p>You make physio with three minutes to spare.</p>",
-      "image": "",
+      "image": "images/B4_scene_s_ask.png",
       "video": "",
       "choices": [
         {
@@ -160,7 +160,7 @@
       "y": 300,
       "title": "You ring the office",
       "body": "<p>It rings out. You leave a message.</p><p>Nobody at the office knows where Rachael waits either. It was never written down, so there is nothing in the file for them to read back to you even if they answer.</p><p>Rachael rang them nine minutes ago from the pallet by the loading door, wondering where her lift was. That message is sitting under yours.</p><p>It is 3:18. You are still in the car park.</p>",
-      "image": "",
+      "image": "images/B5_scene_s_ring.png",
       "video": "",
       "choices": [
         {
@@ -180,7 +180,7 @@
       "y": 640,
       "title": "You wait. So does she.",
       "body": "<p>You wait in the car. Rachael waits on a pallet by the loading door, where she waits every Wednesday.</p><p>At half past three she gives up and walks round to the front.</p><p>Physio is gone. You ring them from the car park and rebook for Tuesday.</p><p>She does not say anything on the drive home. When you ask if she is alright she says she is fine.</p>",
-      "image": "",
+      "image": "images/B6_scene_s_wait.png",
       "video": "",
       "choices": [
         {
@@ -200,7 +200,7 @@
       "y": 980,
       "title": "You log it as a no-show",
       "body": "<p>It is the defensible call. You waited ten minutes, she did not come out, and you have a client at four.</p><p>You tap <em>client not present</em> and drive across town.</p><p>Rachael sat on the pallet until twenty to four. Then she walked home, because the office had not picked up and she did not have your number.</p><p><strong>She was there the whole time.</strong></p><p>The file now says she was not. At her next plan review, that is one more line saying this support is not being used.</p>",
-      "image": "",
+      "image": "images/B7_scene_s_noshow.png",
       "video": "",
       "choices": [
         {
@@ -220,7 +220,7 @@
       "y": 340,
       "title": "You are writing your own note now",
       "body": "<p>Next Wednesday somebody covers Rachael. It might be Danni. It might be someone who has never met her.</p><p><strong>Which of these would you write?</strong></p>",
-      "image": "",
+      "image": "images/B9_scene_q_note.png",
       "video": "",
       "choices": [
         {
@@ -254,7 +254,7 @@
       "y": 340,
       "title": "There was no good option at ten past three",
       "body": "<p>The roster was right. You were on time. Rachael finished when she always finishes and waited where she always waits.</p><p>Every option cost her something.</p><p>Asking inside got her to physio — and walked her the length of the shop past the registers, which is the exact thing she goes out the back to avoid. Waiting cost her the appointment. The office could not help, because nobody had written it down for them either. And a no-show put something in her file that was not true.</p><hr><p><strong>Danni never wrote it down.</strong> Danni just goes round the back. After a few months it stopped being a thing you would think to mention — it was simply how the shift went.</p><p>That is the trap. The things you learn about someone stop feeling like information once you know them. They start feeling like the job.</p><p>They are not the job. They are the part of the job that leaves with you.</p><hr><p>Here is the note that would have prevented all of it:</p><p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Drove Rachael to the garden centre for her 9:00 start. She works in the back and waits by the loading door when she finishes, not the front entrance — she would rather not be collected where the shop can see. Collected her at 3:05 and drove her to physio.</em></p><p>Thirty-four words. About a minute.</p><p>It does not just save the next worker ten minutes in a car park. It means Rachael never has to choose between being on time and being seen.</p><p><strong>A note is not for you. It is for the day you are not there.</strong></p>",
-      "image": "",
+      "image": "images/B10_scene_s_end.png",
       "video": "",
       "choices": []
     },
@@ -266,7 +266,7 @@
       "y": 340,
       "title": "You open her profile",
       "body": "<p>While you wait, you open Rachael's profile on the app.</p><p>It is a good file. Service agreement, current plan, physio referral — all dated this year.</p><p><strong>Goals.</strong> Keep working Wednesdays at the garden centre. Finish the physio program on her left shoulder. Build up to using the bus on her own.</p><p><strong>Risks &amp; Health.</strong> Shoulder injury in July. No medications. No allergies.</p><p>And one line under notes: <em>Rachael can find busy or crowded environments difficult.</em></p><p>You put your phone down and watch the doors.</p>",
-      "image": "",
+      "image": "images/B8_scene_s_profile.png",
       "video": "",
       "choices": [
         {
