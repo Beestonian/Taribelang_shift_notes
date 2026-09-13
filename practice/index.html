@@ -10,7 +10,7 @@
   --ground:#EEF1F5; --surface:#FFFFFF; --surface-2:#F1F5F9;
   --line:#C6D0DC; --ink:#111A24; --ink-2:#41566B; --ink-3:#63798E;
   --accent:#245C4E; --accent-ink:#FFFFFF;
-  --mark:#FBE6C8; --mark-line:#B8842E;
+  --mark-line:#B8842E;
   --ok:#15654D; --ok-soft:#E1F1EA;
   --bad:#9C3225; --bad-soft:#FAE7E4;
   --rec:#9C3225;
@@ -22,57 +22,48 @@
   :root:not([data-theme="light"]){
     --ground:#0E141A; --surface:#18212C; --surface-2:#202B38;
     --line:#35434F; --ink:#F0F5FA; --ink-2:#BDCBD9; --ink-3:#9AACBC;
-    --accent:#5FBEA1; --accent-ink:#06120E;
-    --mark:#5A4620; --mark-line:#D8A441;
+    --accent:#5FBEA1; --accent-ink:#06120E; --mark-line:#D8A441;
     --ok:#6FD0AE; --ok-soft:#16332A;
-    --bad:#EC9A8C; --bad-soft:#3A211D;
-    --rec:#EC9A8C;
+    --bad:#EC9A8C; --bad-soft:#3A211D; --rec:#EC9A8C;
   }
 }
 :root[data-theme="dark"]{
   --ground:#0E141A; --surface:#18212C; --surface-2:#202B38;
   --line:#35434F; --ink:#F0F5FA; --ink-2:#BDCBD9; --ink-3:#9AACBC;
-  --accent:#5FBEA1; --accent-ink:#06120E;
-  --mark:#5A4620; --mark-line:#D8A441;
+  --accent:#5FBEA1; --accent-ink:#06120E; --mark-line:#D8A441;
   --ok:#6FD0AE; --ok-soft:#16332A;
-  --bad:#EC9A8C; --bad-soft:#3A211D;
-  --rec:#EC9A8C;
+  --bad:#EC9A8C; --bad-soft:#3A211D; --rec:#EC9A8C;
 }
 *{box-sizing:border-box}
+[hidden]{display:none !important}
 body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);line-height:1.55}
 .wrap{max-width:720px;margin:0 auto;padding:22px 18px 56px}
 
-/* progress */
 .prog{margin:0 0 18px}
 .prog-line{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
   font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);margin-bottom:8px}
 .prog-bar{height:5px;background:var(--line);border-radius:3px;overflow:hidden}
 .prog-bar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s ease}
 
-/* card */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px 24px 22px}
-h1{font-size:27px;line-height:1.25;margin:0 0 4px;letter-spacing:-.01em}
-h2.step-title{font-size:23px;line-height:1.3;margin:0 0 14px;letter-spacing:-.01em;color:var(--ink)}
-.eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+h1{font-size:27px;line-height:1.25;margin:0 0 14px;letter-spacing:-.01em}
+h2.step-title{font-size:23px;line-height:1.3;margin:0 0 16px;letter-spacing:-.01em;color:var(--ink)}
 .sub{color:var(--ink-2);font-size:15.5px;margin:0 0 18px}
 .sub p{margin:0 0 9px}.sub p:last-child{margin:0}
 
 .brief{background:var(--surface-2);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;
   padding:16px 20px;margin:0 0 18px;font-size:16px}
 .brief p{margin:0 0 10px}.brief p:last-child{margin:0}
-.hidden-brief{background:var(--surface-2);border:1px dashed var(--line);border-radius:10px;
-  padding:16px 20px;margin:0 0 18px;font-size:15px;color:var(--ink-2)}
+.covered{background:var(--surface-2);border:1px dashed var(--line);border-radius:10px;
+  padding:28px 20px;margin:0 0 18px;font-size:15px;color:var(--ink-3);text-align:center}
 
-/* clock */
-.clockwrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 16px}
-.clock{font-family:var(--mono);font-size:34px;font-weight:600;line-height:1;color:var(--ink);min-width:104px}
+.clockwrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 18px}
+.clock{font-family:var(--mono);font-size:38px;font-weight:600;line-height:1;color:var(--ink);min-width:112px}
+.clock.idle{color:var(--ink-3)}
 .clock.over{color:var(--rec)}
-.clock-note{font-size:14px;color:var(--ink-2)}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rec);margin-right:8px;vertical-align:middle}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
-.recording .dot{animation:pulse 1.1s infinite}
 
-/* controls */
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 button.btn{font:inherit;font-size:15.5px;padding:11px 18px;border-radius:8px;border:1px solid var(--line);
   background:var(--surface);color:var(--ink);cursor:pointer;font-weight:500}
@@ -80,55 +71,59 @@ button.btn:hover:not(:disabled){border-color:var(--ink-3)}
 button.btn:disabled{opacity:.4;cursor:default}
 button.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent;font-weight:600}
 button.btn.rec[aria-pressed="true"]{background:var(--bad-soft);border-color:var(--rec);color:var(--rec);font-weight:600}
+button.btn.rec[aria-pressed="true"] .dot{animation:pulse 1.1s infinite}
 button.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .nav{display:flex;gap:10px;align-items:center;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
 .nav .spacer{margin-left:auto}
 .saved{font-size:13px;color:var(--ink-3)}
 
-/* fields */
-.field{margin:0 0 16px}
-.field-label{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:3px}
-.field-hint{font-size:13.5px;color:var(--ink-2);margin-bottom:7px}
+.field{margin:0 0 20px}
+.field-label{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.field-q{font-size:15px;color:var(--ink-2);margin-bottom:8px}
 textarea{width:100%;font:inherit;font-size:16px;line-height:1.6;padding:12px 13px;border-radius:9px;
-  border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);resize:vertical;min-height:86px}
+  border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);resize:vertical;min-height:84px}
+textarea.short{min-height:64px}
 textarea.tall{min-height:150px}
 textarea:focus-visible{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
-.hint{font-size:14px;color:var(--ink-2);margin:9px 0 0}
+.hint{font-size:14px;color:var(--ink-2);margin:10px 0 0}
 
 ul.check{list-style:none;margin:0;padding:0}
 ul.check li{margin:0 0 12px}
 ul.check label{display:flex;gap:12px;align-items:flex-start;font-size:16px;cursor:pointer;color:var(--ink)}
 ul.check input{margin:4px 0 0;width:20px;height:20px;accent-color:var(--accent);flex:0 0 auto}
 
-audio{width:100%;margin-top:14px;display:block}
-audio[hidden],[hidden]{display:none !important}
-.model{background:var(--ok-soft);border:1.5px solid var(--ok);border-radius:10px;padding:16px 18px;font-size:16px;margin:0 0 14px}
-.model p{margin:0 0 10px}.model p:last-child{margin:0}
-.model-notes{font-size:15px;color:var(--ink-2);margin:0 0 16px}
-.model-notes p{margin:0 0 9px}.model-notes p:last-child{margin:0}
-.mine{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:14px 18px;font-size:15.5px;margin:0 0 16px}
-.mine h4{margin:0 0 4px;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2)}
-.mine dl{margin:0}
-.mine dt{font-weight:700;font-size:14.5px;margin-top:10px}
-.mine dd{margin:2px 0 0;color:var(--ink-2);white-space:pre-wrap}
-.mine dd.blank{font-style:italic;color:var(--ink-3)}
+audio{width:100%;margin:14px 0 0;display:block}
 
-.warn{background:var(--bad-soft);border:1.5px solid var(--bad);border-radius:10px;padding:14px 16px;
+/* line-by-line comparison */
+.cmp{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:0 0 16px;background:var(--surface)}
+.cmp h3{margin:0 0 12px;font-size:17px;color:var(--ink)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 14px}
+@media (max-width:620px){ .pair{grid-template-columns:1fr} }
+.pane{border-radius:8px;padding:11px 13px;font-size:15px;white-space:pre-wrap}
+.pane.mine{background:var(--surface-2);border:1px solid var(--line);color:var(--ink)}
+.pane.mine.blank{color:var(--ink-3);font-style:italic}
+.pane.theirs{background:var(--ok-soft);border:1px solid var(--ok);color:var(--ink)}
+.pane-label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-2);margin-bottom:5px}
+.model-notes{font-size:15px;color:var(--ink-2);margin:0 0 16px;padding:12px 14px;
+  background:var(--surface-2);border-radius:8px}
+.model-notes p{margin:0 0 9px}.model-notes p:last-child{margin:0}
+
+.warn{background:var(--bad-soft);border:1.5px solid var(--bad);border-radius:10px;padding:13px 15px;
   font-size:15px;color:var(--ink);margin:0 0 16px}
-.warn a{color:var(--ink);font-weight:600}
+.warn a{color:var(--ink);font-weight:700}
 details.xapi{margin-top:24px;font-size:13px;color:var(--ink-2)}
 details.xapi summary{cursor:pointer;padding:8px 0;color:var(--ink-2);font-weight:600}
 details.xapi pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;
   overflow:auto;max-height:340px;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--ink-2)}
 .err{background:var(--bad-soft);border:1.5px solid var(--bad);border-radius:10px;padding:16px;font-size:15px}
 
-/* author mode */
 .editor{background:var(--surface);border:2px solid var(--mark-line);border-radius:12px;padding:20px 22px;margin:0 0 24px}
 .editor label{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
   color:var(--ink-2);margin:14px 0 5px}
 .editor input,.editor textarea{width:100%;font:inherit;font-size:14px;padding:9px 11px;border-radius:7px;
-  border:1px solid var(--line);background:var(--surface-2);color:var(--ink)}
-.editor textarea{min-height:80px;font-family:var(--mono);font-size:12.5px;line-height:1.5}
+  border:1px solid var(--line);background:var(--surface-2);color:var(--ink);min-height:auto}
+.editor textarea{min-height:74px;font-family:var(--mono);font-size:12.5px;line-height:1.5}
 .editor fieldset{border:1px solid var(--line);border-radius:9px;padding:0 16px 16px;margin:18px 0 0}
 .editor legend{font-size:15px;font-weight:700;padding:0 6px}
 </style>
@@ -223,8 +218,7 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
   }
 
   /* ==================================================================
-     Learner work, kept in localStorage so a closed tab or a reload
-     does not destroy the session.
+     Learner work, kept in localStorage.
      ================================================================== */
   var WORK_KEY = "practice:work", POS_KEY = "practice:pos";
   var work = {};
@@ -237,9 +231,14 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
            saveWork._t = setTimeout(function(){ if(s) s.textContent=""; }, 2500); }
   }
   function w(rid){
-    if(!work[rid]) work[rid] = { note:{}, checks:[], reflection:"", revision:"", spokeSeconds:0 };
-    if(!work[rid].note) work[rid].note = {};
-    return work[rid];
+    var d = work[rid];
+    if(!d) d = work[rid] = {};
+    if(!d.note) d.note = {};
+    if(!d.feedback) d.feedback = {};
+    if(!d.checks) d.checks = [];
+    if(d.revision == null) d.revision = "";
+    if(d.spokeSeconds == null) d.spokeSeconds = 0;
+    return d;
   }
   function savePos(){ try{ localStorage.setItem(POS_KEY, JSON.stringify(pos)); }catch(e){} }
   function loadPos(){
@@ -249,7 +248,7 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
   }
 
   /* ==================================================================
-     Audio. MediaRecorder only. No upload, no transcription service.
+     Audio — MediaRecorder only. Nothing is uploaded.
      ================================================================== */
   function pickMime(){
     if(!window.MediaRecorder) return null;
@@ -265,7 +264,7 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
     if(mime.indexOf("ogg") > -1) return "ogg";
     return "webm";
   }
-  var audioStore = {};   // roundId -> {blob, url}
+  var audioStore = {};
 
   /* ==================================================================
      Downloads
@@ -285,16 +284,6 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
     return (d.textContent||"").replace(/\n{3,}/g,"\n\n").trim();
   }
   function fields(){ return DATA.fields || []; }
-  function noteText(rid){
-    var d = w(rid), out = [];
-    fields().forEach(function(f){
-      var v = (d.note[f.key]||"").trim();
-      out.push(f.label.toUpperCase());
-      out.push(v || "(blank)");
-      out.push("");
-    });
-    return out.join("\n").trim();
-  }
   function allText(){
     var out = [DATA.title, new Date().toLocaleString(), ""];
     DATA.rounds.forEach(function(r){
@@ -303,14 +292,22 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
       out.push(r.label.toUpperCase() + " — " + r.client);
       out.push("==========================================================", "");
       out.push("THE SHIFT", strip(r.brief), "");
-      out.push("HOW LONG I SPOKE FOR: " + (d.spokeSeconds ? d.spokeSeconds + " seconds" : "not recorded"), "");
-      out.push("MY NOTE", noteText(r.id), "");
-      out.push("MY OWN CHECK");
+      if(d.spokeSeconds) out.push("I SPOKE FOR: " + d.spokeSeconds + " seconds", "");
+      out.push("MY NOTE");
+      fields().forEach(function(f){
+        out.push("  " + f.label + ": " + ((d.note[f.key]||"").trim() || "(blank)"));
+      });
+      out.push("", "MY OWN CHECK");
       (r.checklist || DATA.checklistDefault).forEach(function(item,i){
         out.push("  [" + (d.checks.indexOf(i)>-1 ? "x" : " ") + "] " + item);
       });
-      out.push("", "WHAT I'D CHANGE", d.reflection || "(blank)", "");
-      out.push("ONE WAY TO WRITE IT", strip(r.model));
+      out.push("", "ONE WAY TO WRITE IT, AND WHAT I'D CHANGE");
+      fields().forEach(function(f){
+        out.push("  " + f.label);
+        out.push("    Mine:  " + ((d.note[f.key]||"").trim() || "(blank)"));
+        out.push("    Model: " + (((r.modelFields||{})[f.key]||"").trim() || "(blank)"));
+        out.push("    I'd change: " + ((d.feedback[f.key]||"").trim() || "(nothing)"));
+      });
       if(r.modelNotes) out.push("", strip(r.modelNotes));
       out.push("", "THE ONE THING I CHANGED", d.revision || "(blank)", "", "");
     });
@@ -318,7 +315,7 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
   }
   function copyAll(text){
     text = text || allText();
-    function done(){ alert("Copied. Paste it wherever you keep your notes."); }
+    function done(){ alert("Copied."); }
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(done, function(){ legacyCopy(text, done); });
     } else legacyCopy(text, done);
@@ -347,9 +344,16 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
     var m = Math.floor(sec/60), s = sec % 60;
     return (neg?"+":"") + m + ":" + (s<10?"0":"") + s;
   }
-  /* Theme. ?theme=light|dark forces one — embed the page with
-     ?theme=light so it matches Rise instead of following the device.
-     Whatever the learner is looking at carries to the external tab. */
+  function ta(value, cls, oninput){
+    var t = document.createElement("textarea");
+    if(cls) t.className = cls;
+    t.value = value || "";
+    t.addEventListener("input", function(){ oninput(t.value); });
+    return t;
+  }
+
+  /* Theme. ?theme=light|dark forces one; the external link carries
+     whichever the learner is currently looking at. */
   function applyTheme(){
     var m = /[?&]theme=(light|dark)(?:&|$)/.exec(location.search);
     if(m) document.documentElement.setAttribute("data-theme", m[1]);
@@ -357,9 +361,7 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
   function effectiveTheme(){
     var set = document.documentElement.getAttribute("data-theme");
     if(set) return set;
-    try{
-      if(window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
-    }catch(e){}
+    try{ if(window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) return "dark"; }catch(e){}
     return "light";
   }
   function externalHref(){
@@ -369,26 +371,17 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
     return location.origin + location.pathname + q + "theme=" + effectiveTheme();
   }
 
-  function ta(value, placeholder, tall, oninput){
-    var t = document.createElement("textarea");
-    if(tall) t.className = "tall";
-    t.value = value || ""; t.placeholder = placeholder || "";
-    t.addEventListener("input", function(){ oninput(t.value); });
-    return t;
-  }
-
   /* ==================================================================
-     Steps. One task on screen at a time.
+     Steps — one task per screen, forward only.
      ================================================================== */
-  var STEPS = ["read","speak","write","check","feedback","compare","revise"];
+  var STEPS = ["read","speak","write","check","compare","revise"];
   var STEP_TITLES = {
     read:"Read the shift", speak:"Say your note out loud", write:"Write it down",
-    check:"Check your own", feedback:"Your own feedback",
-    compare:"One way to write it", revise:"Change one thing"
+    check:"Check your own", compare:"Compare", revise:"Change one thing"
   };
   var pos = { r:0, s:0 };
   var micBlocked = false;
-  var live = null;     // active recorder state, torn down on every step change
+  var live = null;
 
   function teardown(){
     if(live){
@@ -398,49 +391,37 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
       live = null;
     }
   }
-  function go(dr, ds){
+  function go(r, s){
     teardown();
-    if(ds != null) pos.s = ds;
-    if(dr != null) pos.r = dr;
+    if(s != null) pos.s = s;
+    if(r != null) pos.r = r;
     savePos(); paint(); window.scrollTo(0,0);
   }
   function next(){
     if(pos.s < STEPS.length - 1) return go(null, pos.s + 1);
     if(pos.r < DATA.rounds.length - 1) return go(pos.r + 1, 0);
-    return go(DATA.rounds.length, 0);          // past the end = close screen
-  }
-  function back(){
-    if(pos.s > 0) return go(null, pos.s - 1);
-    if(pos.r > 0) return go(pos.r - 1, STEPS.length - 1);
+    return go(DATA.rounds.length, 0);
   }
 
-  /* ---------- individual steps ---------- */
-
+  /* ---------- 1. read ---------- */
   function stepRead(r, body, nav){
     var secs = r.readSeconds || 60;
-    body.appendChild(el("p","sub",
-      "You'll get <b>" + mmss(secs) + "</b> with this shift in front of you. Then it goes away and you speak from memory. Start it when you're ready."));
-
-    var hold = el("div","hidden-brief",
-      "<b>The shift is covered.</b> Press Start reading and the clock begins.");
-    body.appendChild(hold);
+    var holder = el("div","covered", "You'll get " + mmss(secs) + " with this shift.");
+    body.appendChild(holder);
 
     var cw = el("div","clockwrap");
-    var clock = el("span","clock", mmss(secs));
-    var note = el("span","clock-note","Nothing is running yet.");
-    cw.appendChild(clock); cw.appendChild(note);
+    var clock = el("span","clock idle", mmss(secs));
+    cw.appendChild(clock);
     body.appendChild(cw);
 
-    var startBtn = el("button","btn primary","Start reading");
-    startBtn.type = "button";
-    var doneBtn = el("button","btn primary","I've read it");
-    doneBtn.type = "button"; doneBtn.hidden = true;
+    var startBtn = el("button","btn primary","Start"); startBtn.type = "button";
+    var doneBtn = el("button","btn primary","Next"); doneBtn.type = "button"; doneBtn.hidden = true;
     doneBtn.addEventListener("click", next);
 
     startBtn.addEventListener("click", function(){
       startBtn.hidden = true; doneBtn.hidden = false;
-      hold.className = "brief"; hold.innerHTML = r.brief;
-      note.textContent = "Read it. When this hits zero the shift goes away.";
+      holder.className = "brief"; holder.innerHTML = r.brief;
+      clock.classList.remove("idle");
       var left = secs;
       var tick = setInterval(function(){
         left--;
@@ -449,38 +430,29 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
       }, 1000);
       live = { tick: tick };
       emit(V.experienced, "experienced", {
-        object: roundObject(r, "brief", "Read the shift narrative under a self-started time limit.", "other"),
-        result: { duration: iso(secs*1000) },
-        context: ctx()
-      });
+        object: roundObject(r, "brief", "Read the shift under a self-started time limit.", "other"),
+        result: { duration: iso(secs*1000) }, context: ctx() });
     });
-    nav.appendChild(startBtn);
-    nav.appendChild(doneBtn);
+    nav.appendChild(startBtn); nav.appendChild(doneBtn);
   }
 
+  /* ---------- 2. speak ---------- */
   function stepSpeak(r, body, nav){
     var d = w(r.id);
-    body.appendChild(el("div","hidden-brief",
-      "<b>The shift is hidden now.</b> That's the point — say the note the way you'd dictate it in the car, from what you remember."));
-    body.appendChild(el("p","sub", esc(r.prompt || "Say your note out loud.")));
-
     var cw = el("div","clockwrap");
-    var clock = el("span","clock", r.timerSeconds > 0 ? mmss(r.timerSeconds) : "0:00");
+    var clock = el("span","clock idle", r.timerSeconds > 0 ? mmss(r.timerSeconds) : "0:00");
     cw.appendChild(clock);
-    cw.appendChild(el("span","clock-note", esc(r.timerNote || "")));
     body.appendChild(cw);
 
-    var warn = el("div","warn","");
-    warn.hidden = true;
+    var warn = el("div","warn",""); warn.hidden = true;
     body.appendChild(warn);
 
     var row = el("div","row");
     var recBtn = el("button","btn rec primary","Record");
     recBtn.type = "button"; recBtn.setAttribute("aria-pressed","false");
+    var clockBtn = el("button","btn primary","Start"); clockBtn.type = "button"; clockBtn.hidden = true;
     var dlBtn = el("button","btn","Download recording");
     dlBtn.type = "button"; dlBtn.disabled = !audioStore[r.id];
-    var clockBtn = el("button","btn primary","Start the clock");
-    clockBtn.type = "button"; clockBtn.hidden = true;
     row.appendChild(recBtn); row.appendChild(clockBtn); row.appendChild(dlBtn);
     body.appendChild(row);
 
@@ -488,7 +460,6 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
     audio.controls = true; audio.hidden = !audioStore[r.id];
     if(audioStore[r.id]) audio.src = audioStore[r.id].url;
     body.appendChild(audio);
-    body.appendChild(el("p","hint","The recording stays in this browser. It is not uploaded anywhere."));
 
     var st = { rec:null, chunks:[], stream:null, t0:0, tick:null, elapsed:0 };
     live = st;
@@ -504,23 +475,22 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
     function showBlocked(){
       micBlocked = true;
       warn.hidden = false;
-      warn.innerHTML = "<b>This browser won't let the page use your microphone here.</b> " +
-        "That's the page being embedded, not your device. Say your note out loud anyway — " +
-        "out loud is the part that matters — then write it down on the next screen. " +
-        '<br><br><a href="' + esc(externalHref()) + '" target="_blank" rel="noopener">Open this in its own tab</a> if you want the recorder.';
+      warn.innerHTML = "The microphone is blocked inside an embedded page. " +
+        '<a href="' + esc(externalHref()) + '" target="_blank" rel="noopener">Open in a new tab</a> to record, ' +
+        "or say it out loud and press Start.";
       recBtn.hidden = true;
       clockBtn.hidden = false;
     }
     clockBtn.addEventListener("click", function(){
       if(st.tick){
         clearInterval(st.tick); st.tick = null;
-        clockBtn.textContent = "Start the clock";
+        clockBtn.textContent = "Start";
         d.spokeSeconds = st.elapsed; saveWork();
         return;
       }
-      st.t0 = Date.now(); paintClock();
+      st.t0 = Date.now(); clock.classList.remove("idle"); paintClock();
       st.tick = setInterval(paintClock, 250);
-      clockBtn.textContent = "Stop the clock";
+      clockBtn.textContent = "Stop";
     });
     function stop(){
       try{ st.rec.stop(); }catch(e){}
@@ -528,7 +498,6 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
       clearInterval(st.tick); st.tick = null;
       recBtn.setAttribute("aria-pressed","false");
       recBtn.textContent = "Record again";
-      body.parentNode.classList.remove("recording");
     }
     recBtn.addEventListener("click", function(){
       if(st.rec && st.rec.state === "recording"){ stop(); return; }
@@ -548,17 +517,15 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
           audio.src = audioStore[r.id].url; audio.hidden = false; dlBtn.disabled = false;
           d.spokeSeconds = st.elapsed; saveWork();
           emit(V.responded, "responded", {
-            object: roundObject(r, "spoken-note", "Spoken note, recorded in the browser and not transmitted."),
+            object: roundObject(r, "spoken-note", "Spoken note, held in the browser and not transmitted."),
             result:{ duration: iso(st.elapsed*1000), response:"[audio held locally, " + st.elapsed + "s]" },
-            context: ctx()
-          });
+            context: ctx() });
         };
         st.rec.start();
-        st.t0 = Date.now(); paintClock();
+        st.t0 = Date.now(); clock.classList.remove("idle"); paintClock();
         st.tick = setInterval(paintClock, 250);
         recBtn.setAttribute("aria-pressed","true");
         recBtn.innerHTML = '<span class="dot"></span>Stop';
-        body.parentNode.classList.add("recording");
         warn.hidden = true;
         emit(V.attempted, "attempted", {
           object: roundObject(r, "spoken-note", "Started speaking the note."), context: ctx() });
@@ -570,48 +537,45 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
     });
     if(micBlocked) showBlocked();
 
-    var done = el("button","btn primary","I've said it");
-    done.type = "button";
+    var done = el("button","btn primary","Next"); done.type = "button";
     done.addEventListener("click", next);
     nav.appendChild(done);
   }
 
+  /* ---------- 3. write ---------- */
   function stepWrite(r, body, nav){
     var d = w(r.id);
-    body.appendChild(el("p","sub",
-      audioStore[r.id]
-        ? "Play it back and write down what you actually said. Not a tidied-up version."
-        : "Write down what you said. Not a tidied-up version — what actually came out."));
     if(audioStore[r.id]){
       var a = document.createElement("audio");
       a.controls = true; a.src = audioStore[r.id].url;
+      a.style.margin = "0 0 18px";
       body.appendChild(a);
-      body.appendChild(el("p","hint","&nbsp;"));
     }
     fields().forEach(function(f){
       var fd = el("div","field");
       fd.appendChild(el("div","field-label", esc(f.label)));
-      if(f.hint) fd.appendChild(el("div","field-hint", esc(f.hint)));
-      fd.appendChild(ta(d.note[f.key], "", false, function(v){ d.note[f.key] = v; saveWork(); }));
+      if(f.question) fd.appendChild(el("div","field-q", esc(f.question)));
+      fd.appendChild(ta(d.note[f.key], null, function(v){ d.note[f.key] = v; saveWork(); }));
       body.appendChild(fd);
     });
-    body.appendChild(el("p","hint","A heading can be empty. Leaving one blank is a real answer."));
-    var done = el("button","btn primary","Done");
-    done.type = "button";
+    var done = el("button","btn primary","Next"); done.type = "button";
     done.addEventListener("click", function(){
-      if(noteText(r.id).replace(/\(blank\)/g,"").replace(/[A-Z ]+\n?/g,"").trim()){
+      var any = fields().some(function(f){ return (d.note[f.key]||"").trim(); });
+      if(any){
+        var resp = fields().map(function(f){
+          return f.label + ": " + ((d.note[f.key]||"").trim() || "(blank)"); }).join("\n");
         emit(V.responded, "responded", {
           object: roundObject(r, "written-note", "The learner's own note, under the ShiftCare headings."),
-          result:{ response: noteText(r.id) }, context: ctx() });
+          result:{ response: resp }, context: ctx() });
       }
       next();
     });
     nav.appendChild(done);
   }
 
+  /* ---------- 4. check ---------- */
   function stepCheck(r, body, nav){
     var d = w(r.id);
-    body.appendChild(el("p","sub","Before you see anyone else's. Tick only what's true of what you wrote."));
     var items = r.checklist || DATA.checklistDefault;
     var list = el("ul","check");
     items.forEach(function(item,i){
@@ -628,8 +592,7 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
       li.appendChild(lab); list.appendChild(li);
     });
     body.appendChild(list);
-    var done = el("button","btn primary","Done");
-    done.type = "button";
+    var done = el("button","btn primary","Next"); done.type = "button";
     done.addEventListener("click", function(){
       emit(V.answered, "answered", {
         object: roundObject(r, "self-check", "Self-assessment against the checklist, submitted before the model was shown.", "choice"),
@@ -639,63 +602,58 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
                    "https://beestonian.github.io/Taribelang_shift_notes/x/self-reported":true,
                    "https://beestonian.github.io/Taribelang_shift_notes/x/items-ticked":d.checks.length,
                    "https://beestonian.github.io/Taribelang_shift_notes/x/items-total":items.length } },
-        context: ctx()
-      });
+        context: ctx() });
       next();
     });
     nav.appendChild(done);
   }
 
-  function stepFeedback(r, body, nav){
-    var d = w(r.id);
-    body.appendChild(el("p","sub","Still before you see ours. What would you change, and why?"));
-    body.appendChild(ta(d.reflection,
-      "Anything you'd cut, anything you concluded rather than saw, anything the next worker still wouldn't know.",
-      true, function(v){ d.reflection = v; saveWork(); }));
-    var done = el("button","btn primary","Show me one way to write it");
-    done.type = "button";
+  /* ---------- 5. compare, heading by heading ---------- */
+  function stepCompare(r, body, nav){
+    var d = w(r.id), mf = r.modelFields || {};
+    fields().forEach(function(f){
+      var box = el("div","cmp");
+      box.appendChild(el("h3",null, esc(f.label)));
+      var pair = el("div","pair");
+
+      var left = document.createElement("div");
+      left.appendChild(el("div","pane-label","You wrote"));
+      var mine = (d.note[f.key]||"").trim();
+      left.appendChild(el("div", mine ? "pane mine" : "pane mine blank", mine ? esc(mine) : "You left this blank"));
+
+      var right = document.createElement("div");
+      right.appendChild(el("div","pane-label","One way to write it"));
+      right.appendChild(el("div","pane theirs", esc((mf[f.key]||"").trim() || "—")));
+
+      pair.appendChild(left); pair.appendChild(right);
+      box.appendChild(pair);
+      box.appendChild(el("div","pane-label","What would you change?"));
+      box.appendChild(ta(d.feedback[f.key], "short", function(v){ d.feedback[f.key] = v; saveWork(); }));
+      body.appendChild(box);
+    });
+    if(r.modelNotes) body.appendChild(el("div","model-notes", r.modelNotes));
+
+    var done = el("button","btn primary","Next"); done.type = "button";
     done.addEventListener("click", function(){
-      if((d.reflection||"").trim()){
+      var any = fields().some(function(f){ return (d.feedback[f.key]||"").trim(); });
+      if(any){
+        var resp = fields().map(function(f){
+          return f.label + ": " + ((d.feedback[f.key]||"").trim() || "(nothing)"); }).join("\n");
         emit(V.responded, "responded", {
-          object: roundObject(r, "self-feedback", "The learner's own critique of their note, written before the model was shown."),
-          result:{ response: d.reflection }, context: ctx() });
+          object: roundObject(r, "self-feedback", "The learner's own critique, heading by heading, against the model."),
+          result:{ response: resp }, context: ctx() });
       }
       next();
     });
     nav.appendChild(done);
   }
 
-  function stepCompare(r, body, nav){
-    body.appendChild(el("div","model", r.model));
-    if(r.modelNotes) body.appendChild(el("div","model-notes", r.modelNotes));
-    var d = w(r.id);
-    var mine = el("div","mine");
-    mine.appendChild(el("h4",null,"What you wrote"));
-    var dl = document.createElement("dl");
-    fields().forEach(function(f){
-      var v = (d.note[f.key]||"").trim();
-      dl.appendChild(el("dt",null, esc(f.label)));
-      dl.appendChild(el("dd", v ? null : "blank", v ? esc(v) : "(you left this blank)"));
-    });
-    mine.appendChild(dl);
-    body.appendChild(mine);
-    body.appendChild(el("details",null,
-      "<summary style=\"cursor:pointer;font-weight:600;color:var(--ink-2);padding:6px 0\">Show the shift again</summary>" +
-      '<div class="brief" style="margin-top:10px">' + r.brief + "</div>"));
-    var done = el("button","btn primary","Next");
-    done.type = "button";
-    done.addEventListener("click", next);
-    nav.appendChild(done);
-  }
-
+  /* ---------- 6. revise ---------- */
   function stepRevise(r, body, nav){
     var d = w(r.id);
-    body.appendChild(el("p","sub","Not a rewrite. One change — the one that would have mattered most."));
-    body.appendChild(ta(d.revision, "The line I'd change, and what I'd change it to.", true,
-      function(v){ d.revision = v; saveWork(); }));
+    body.appendChild(ta(d.revision, "tall", function(v){ d.revision = v; saveWork(); }));
     var last = pos.r === DATA.rounds.length - 1;
-    var done = el("button","btn primary", last ? "Finish" : "Next round");
-    done.type = "button";
+    var done = el("button","btn primary", last ? "Finish" : "Next round"); done.type = "button";
     done.addEventListener("click", function(){
       if((d.revision||"").trim()){
         emit(V.responded, "responded", {
@@ -703,24 +661,23 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
           result:{ response: d.revision }, context: ctx() });
       }
       emit(V.completed, "completed", {
-        object: roundObject(r, "round", "Completed the full loop for this round.", "other"),
+        object: roundObject(r, "round", "Completed the loop for this round.", "other"),
         result:{ completion:true }, context: ctx() });
       next();
     });
     nav.appendChild(done);
   }
 
-  var RENDER = { read:stepRead, speak:stepSpeak, write:stepWrite, check:stepCheck,
-                 feedback:stepFeedback, compare:stepCompare, revise:stepRevise };
+  var RENDER = { read:stepRead, speak:stepSpeak, write:stepWrite,
+                 check:stepCheck, compare:stepCompare, revise:stepRevise };
 
-  /* ---------- close screen ---------- */
+  /* ---------- close ---------- */
   function renderClose(){
     var card = el("section","card");
-    card.appendChild(el("p","eyebrow","Done"));
     card.appendChild(el("h1",null, esc(DATA.close.heading)));
     card.appendChild(el("div","sub", DATA.close.body));
     var row = el("div","row");
-    var dl = el("button","btn primary","Download my three notes"); dl.type="button";
+    var dl = el("button","btn primary","Download my notes"); dl.type="button";
     dl.addEventListener("click", function(){
       var text = allText();
       var ok = download(new Blob([text],{type:"text/plain;charset=utf-8"}), "my-shift-notes.txt");
@@ -731,22 +688,18 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
         result:{ completion:true, duration: iso(Date.now()-started) } });
       if(!ok) copyAll(text);
     });
-    var cp = el("button","btn","Copy to clipboard"); cp.type="button";
+    var cp = el("button","btn","Copy"); cp.type="button";
     cp.addEventListener("click", function(){ copyAll(); });
     row.appendChild(dl); row.appendChild(cp);
     card.appendChild(row);
-    card.appendChild(el("p","hint","If the download doesn't start, use Copy and paste it into your phone's notes. Your work is also saved in this browser until you clear it."));
     var nav = el("div","nav");
-    var b = el("button","btn","Back"); b.type="button";
-    b.addEventListener("click", function(){ go(DATA.rounds.length-1, STEPS.length-1); });
+    nav.appendChild(el("span","spacer",""));
     var again = el("button","btn","Start again"); again.type="button";
     again.addEventListener("click", function(){
       if(!confirm("Clear everything you've written and start from round one?")) return;
       try{ localStorage.removeItem(WORK_KEY); localStorage.removeItem(POS_KEY); }catch(e){}
       loadWork(); go(0,0);
     });
-    nav.appendChild(b);
-    var sp = el("span","spacer"); nav.appendChild(sp);
     nav.appendChild(again);
     card.appendChild(nav);
     return card;
@@ -764,8 +717,7 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
 
   function paint(){
     app.innerHTML = "";
-    var editing = /[?&]edit(?:&|=|$)/.test(location.search);
-    if(editing) app.appendChild(renderEditor());
+    if(/[?&]edit(?:&|=|$)/.test(location.search)) app.appendChild(renderEditor());
 
     if(pos.r >= DATA.rounds.length){
       app.appendChild(renderClose());
@@ -774,13 +726,13 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
 
       var prog = el("div","prog");
       var line = el("div","prog-line");
-      line.appendChild(el("span",null, esc(r.label) + " of " + DATA.rounds.length + " &middot; " + esc(r.client)));
-      line.appendChild(el("span",null, "Step " + (pos.s+1) + " of " + STEPS.length));
+      line.appendChild(el("span",null, esc(r.label) + " &middot; " + esc(r.client)));
+      line.appendChild(el("span",null, (pos.s+1) + " / " + STEPS.length));
       prog.appendChild(line);
       var bar = el("div","prog-bar");
-      var totalSteps = DATA.rounds.length * STEPS.length;
-      var doneSteps = pos.r * STEPS.length + pos.s;
-      bar.appendChild(el("i",null,"")).style.width = Math.round(doneSteps/totalSteps*100) + "%";
+      var total = DATA.rounds.length * STEPS.length;
+      bar.appendChild(el("i",null,"")).style.width =
+        Math.round((pos.r*STEPS.length + pos.s)/total*100) + "%";
       prog.appendChild(bar);
       app.appendChild(prog);
 
@@ -790,13 +742,8 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
       card.appendChild(body);
 
       var nav = el("div","nav");
-      var b = el("button","btn","Back"); b.type = "button";
-      b.disabled = (pos.r === 0 && pos.s === 0);
-      b.addEventListener("click", back);
-      nav.appendChild(b);
       nav.appendChild(el("span","spacer",""));
       var sv = el("span","saved",""); sv.id = "saved"; nav.appendChild(sv);
-
       RENDER[key](r, body, nav);
       card.appendChild(nav);
       app.appendChild(card);
@@ -814,7 +761,7 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
   function renderEditor(){
     var box = el("section","editor");
     box.appendChild(el("h2",null,"Author mode"));
-    box.appendChild(el("p","hint","Edit anything, preview it, then download <code>rounds.json</code> and commit it over the one in <code>practice/</code>. Nothing here saves to the server."));
+    box.appendChild(el("p","hint","Edit, preview, then download <code>rounds.json</code> and commit it over the one in <code>practice/</code>."));
     var refs = { rounds:[], fields:[] };
 
     function field(parent, label, value, opts){
@@ -833,16 +780,11 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
       box.appendChild(f); return f;
     }
 
-    var fi = fs("Intro");
-    refs.introHeading = field(fi,"Heading",DATA.intro.heading,{short:true});
-    refs.introBody = field(fi,"Body (HTML)",DATA.intro.body);
-
-    var ff = fs("Note headings — what the learner sees in ShiftCare");
+    var ff = fs("Note headings and their questions");
     (DATA.fields||[]).forEach(function(f,i){
-      var o = {};
+      var o = { key:f.key };
       o.label = field(ff,"Heading " + (i+1), f.label, {short:true});
-      o.hint = field(ff,"Hint under it", f.hint, {short:true});
-      o.key = f.key;
+      o.question = field(ff,"Question under it", f.question, {short:true});
       refs.fields[i] = o;
     });
 
@@ -850,17 +792,17 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
     refs.checkDefault = field(fd,"Items",(DATA.checklistDefault||[]).join("\n"));
 
     DATA.rounds.forEach(function(r,idx){
-      var f = fs(r.label + " — " + r.client), o = {};
+      var f = fs(r.label + " — " + r.client), o = { model:{} };
       o.label = field(f,"Label",r.label,{short:true});
       o.client = field(f,"Client and shift",r.client,{short:true});
       o.readSeconds = field(f,"Reading time, seconds",r.readSeconds,{number:true});
       o.timerSeconds = field(f,"Speaking limit, seconds (0 = no limit)",r.timerSeconds,{number:true});
-      o.timerNote = field(f,"Note beside the clock",r.timerNote,{short:true});
       o.brief = field(f,"The shift (HTML)",r.brief);
-      o.prompt = field(f,"Prompt on the speaking step",r.prompt,{short:true});
       o.checklist = field(f,"Self-check items (one per line, blank = default)",(r.checklist||[]).join("\n"));
-      o.model = field(f,"Example note (HTML)",r.model);
-      o.modelNotes = field(f,"Commentary under the example (HTML)",r.modelNotes);
+      (DATA.fields||[]).forEach(function(fl){
+        o.model[fl.key] = field(f,"Example — " + fl.label, (r.modelFields||{})[fl.key]);
+      });
+      o.modelNotes = field(f,"Commentary under the comparison (HTML)",r.modelNotes);
       refs.rounds[idx] = o;
     });
 
@@ -870,20 +812,20 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
 
     function collect(){
       var out = JSON.parse(JSON.stringify(DATA));
-      out.intro.heading = refs.introHeading.value;
-      out.intro.body = refs.introBody.value;
       out.fields = refs.fields.map(function(o){
-        return { key:o.key, label:o.label.value, hint:o.hint.value }; });
+        return { key:o.key, label:o.label.value, question:o.question.value }; });
       out.checklistDefault = refs.checkDefault.value.split("\n").map(function(s){return s.trim();}).filter(Boolean);
       out.rounds.forEach(function(r,i){
         var o = refs.rounds[i];
         r.label = o.label.value; r.client = o.client.value;
         r.readSeconds = parseInt(o.readSeconds.value,10) || 0;
         r.timerSeconds = parseInt(o.timerSeconds.value,10) || 0;
-        r.timerNote = o.timerNote.value; r.brief = o.brief.value; r.prompt = o.prompt.value;
+        r.brief = o.brief.value;
         var cl = o.checklist.value.split("\n").map(function(s){return s.trim();}).filter(Boolean);
         if(cl.length) r.checklist = cl; else delete r.checklist;
-        r.model = o.model.value; r.modelNotes = o.modelNotes.value;
+        r.modelFields = {};
+        Object.keys(o.model).forEach(function(k){ r.modelFields[k] = o.model[k].value; });
+        r.modelNotes = o.modelNotes.value;
       });
       out.close.heading = refs.closeHeading.value;
       out.close.body = refs.closeBody.value;

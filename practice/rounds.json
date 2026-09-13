@@ -1,15 +1,32 @@
 {
-  "formatVersion": 1,
+  "formatVersion": 2,
   "title": "Writing one",
   "activityId": "https://beestonian.github.io/Taribelang_shift_notes/practice/",
-  "intro": {
-    "heading": "Writing one",
-    "body": "<p>Three rounds. Each one runs the same loop: <strong>read the shift, say your note out loud, play it back, write down what you actually said, check it yourself, then compare.</strong></p><p>Nothing you record or type leaves this page. It stays in your browser until you download it.</p><p>If you run over the time, keep going and note how long it really took. That number is the useful one.</p>"
-  },
+  "fields": [
+    {
+      "key": "goals",
+      "label": "Goals",
+      "question": "Did the client state their goal? If so, what is it?"
+    },
+    {
+      "key": "working",
+      "label": "Working towards",
+      "question": "Did we make progress towards their goal? Was it prompted?"
+    },
+    {
+      "key": "cultural",
+      "label": "Cultural outcomes",
+      "question": "Did we connect the client to family, language, community and country?"
+    },
+    {
+      "key": "other",
+      "label": "Anything else",
+      "question": "What did you see, and hear? Anything another support worker or the service provider needs to know?"
+    }
+  ],
   "checklistDefault": [
     "It names what I actually did, not the funding category",
     "It says what they did, in words a camera could have recorded",
-    "It links to their goal, using what they did + towards + their goal",
     "There's nothing in it I concluded rather than saw",
     "Someone covering them next week could use this"
   ],
@@ -18,82 +35,67 @@
       "id": "round-1",
       "label": "Round one",
       "client": "Rachael, Friday morning",
+      "readSeconds": 60,
       "timerSeconds": 0,
-      "timerNote": "No timer on this one. Just find the thing that matters.",
-      "brief": "<p><strong>The shift.</strong> Rachael, 24. Transport, 8:30&ndash;9:15.</p><p>You drove Rachael to the garden centre for her 9:00 start.</p><p>The radio was on and she didn't say much.</p><p>On the way she mentioned she's been asked to do a Saturday shift next month, and she's going to say yes.</p>",
-      "prompt": "One of those three things needs to be in the note. Say it out loud.",
+      "brief": "<p><strong>Rachael, 24. Transport, 8:30&ndash;9:15.</strong></p><p>You drove Rachael to the garden centre for her 9:00 start.</p><p>The radio was on and she didn't say much.</p><p>On the way she mentioned she's been asked to do a Saturday shift next month, and she's going to say yes.</p>",
       "checklist": [
         "I picked the thing the next person actually needs",
         "I said what happened, not what I thought about it",
         "Someone who has never met Rachael could use this"
       ],
-      "model": "<p><strong>Goals</strong> &mdash; Rachael's working towards keeping her job at the garden centre.</p><p><strong>Working towards</strong> &mdash; Drove Rachael to work for her 9:00 start. She told me she's been offered a Saturday shift next month and she's going to take it.</p><p><strong>Cultural outcomes</strong> &mdash; nothing this shift.</p>",
-      "modelNotes": "<p>The radio and the quiet drive aren't in it. The Saturday shift is &mdash; because whoever arranges her transport next month needs to know, and it falls on you to record it for them.</p>",
-      "readSeconds": 60
+      "modelFields": {
+        "goals": "She didn't say. Nothing this shift told me what she's working towards.",
+        "working": "Drove Rachael to work for her 9:00 start.",
+        "cultural": "Nothing this shift.",
+        "other": "She told me she's been offered a Saturday shift next month and she's going to take it. Whoever arranges her transport will need to know."
+      },
+      "modelNotes": "<p>The radio and the quiet drive aren't in it.</p>"
     },
     {
       "id": "round-2",
       "label": "Round two",
       "client": "Mary, Tuesday morning",
+      "readSeconds": 60,
       "timerSeconds": 300,
-      "timerNote": "Five minutes. The clock starts when you press Record.",
-      "brief": "<p><strong>The shift.</strong> Mary, 61. Community access, 10:00&ndash;11:45.</p><p>You picked Mary up at ten. She had her logbook out of the drawer and in her bag before you got there.</p><p>You did thirty minutes of supervised driving practice on the back roads near Avoca. She reverse parked twice without prompting. She wrote it up in the logbook herself while you were parked.</p><p>On the way home she talked about her sister coming up from Hervey Bay at the weekend.</p><p>You dropped her home at 11:45.</p>",
-      "prompt": "Say your note out loud. Three headings.",
+      "brief": "<p><strong>Mary, 61. Community access, 10:00&ndash;11:45.</strong></p><p>You picked Mary up at ten. She had her logbook out of the drawer and in her bag before you got there.</p><p>You did thirty minutes of supervised driving practice on the back roads near Avoca. She reverse parked twice without prompting. She wrote it up in the logbook herself while you were parked.</p><p>On the way home she talked about her sister coming up from Hervey Bay at the weekend.</p><p>You dropped her home at 11:45.</p>",
       "checklist": [
         "It names what I actually did, not the funding category",
         "It says what Mary did, in words a camera could have recorded",
-        "It links to her goal, using what she did + towards + her goal",
         "There's nothing in it I concluded rather than saw",
         "Someone covering Mary next Tuesday could use this"
       ],
-      "model": "<p><strong>Goals</strong> &mdash; Mary's working towards getting her driver's licence.</p><p><strong>Working towards</strong> &mdash; 30 minutes of supervised driving practice on the back roads near Avoca. Mary reverse parked twice without prompting. She had her logbook in her bag before I arrived and filled it in herself while we were parked.</p><p><strong>Cultural outcomes</strong> &mdash; nothing this shift.</p>",
-      "modelNotes": "<p><strong>What's not in it:</strong> the conversation about her sister. It was pleasant. It isn't a support, a response to a support, or a goal. Leaving it out isn't being cold &mdash; it's keeping the note usable.</p><p><strong>What is in it, and might surprise you:</strong> that she had the logbook ready before you arrived. That looks like small talk. It isn't &mdash; it tells whoever has her next week that she's driving this herself now.</p>",
-      "readSeconds": 60
+      "modelFields": {
+        "goals": "Not stated today. Her plan goal is her driver's licence.",
+        "working": "30 minutes of supervised driving practice on the back roads near Avoca. Mary reverse parked twice, unprompted. She filled in the logbook herself while we were parked.",
+        "cultural": "Nothing this shift.",
+        "other": "She had her logbook in her bag before I arrived."
+      },
+      "modelNotes": "<p>The conversation about her sister isn't in it. It was pleasant, but it isn't a support, a response to a support, or a goal.</p>"
     },
     {
       "id": "round-3",
       "label": "Round three",
       "client": "David, Thursday afternoon",
+      "readSeconds": 90,
       "timerSeconds": 180,
-      "timerNote": "Three minutes. This one has more in it.",
-      "brief": "<p><strong>The shift.</strong> David, 27. Community access and travel training, 2:00&ndash;3:45.</p><p>You arrived at two. David was at the door with his bag on. The neighbour's dog was going the whole time you were there.</p><p>You caught the 2:15 bus into town. It was late and it was raining. David watched for the stop and pressed the bell himself without you saying anything &mdash; first time he's done that.</p><p>At the newsagent he said hello to the woman behind the counter in language, then told you what the word meant and that his aunty taught him.</p><p>He didn't want to go into the chemist. He waited outside with you and you went in after, once it had emptied out.</p><p>You had another client at four, across town. Home by 3:45.</p>",
-      "prompt": "Say your note out loud. Same three headings.",
+      "brief": "<p><strong>David, 27. Community access and travel training, 2:00&ndash;3:45.</strong></p><p>You arrived at two. David was at the door with his bag on. The neighbour's dog was going the whole time you were there.</p><p>You caught the 2:15 bus into town. It was late and it was raining. David watched for the stop and pressed the bell himself without you saying anything &mdash; first time he's done that.</p><p>At the newsagent he said hello to the woman behind the counter in language, then told you what the word meant and that his aunty taught him.</p><p>He didn't want to go into the chemist. He waited outside with you and you went in after, once it had emptied out.</p><p>You had another client at four, across town. Home by 3:45.</p>",
       "checklist": [
         "It names what I actually did, not the funding category",
         "It says what David did, in words a camera could have recorded",
-        "It links to his goals, using what he did + towards + his goal",
         "There's nothing in it I concluded rather than saw",
         "Someone covering David next Thursday could use this"
       ],
-      "model": "<p><strong>Goals</strong> &mdash; David's working towards travelling independently around town, and towards connecting with community and language.</p><p><strong>Working towards</strong> &mdash; Caught the 2:15 bus into town. David watched for the stop and pressed the bell himself without prompting &mdash; first time he's done this.</p><p><strong>Cultural outcomes</strong> &mdash; David greeted the woman at the newsagent in language, then explained what the word meant and said his aunty taught him.</p><p><em>And one more line, which doesn't sit under a heading:</em></p><p>David didn't want to go into the chemist. He waited outside with me and we went in after it had emptied out.</p>",
-      "modelNotes": "<p>That last line isn't a goal and it isn't a cultural outcome. It's the thing that makes next week easier for whoever has him.</p><p>The dog, the rain, the late bus and your four o'clock are not in the note. None of them change what the next worker does.</p>",
-      "readSeconds": 90
+      "modelFields": {
+        "goals": "Not stated today. His plan goals are travelling independently around town, and connecting with community and language.",
+        "working": "Caught the 2:15 bus into town. David watched for the stop and pressed the bell himself, unprompted. First time he's done that.",
+        "cultural": "David greeted the woman at the newsagent in language, then explained what the word meant and said his aunty taught him.",
+        "other": "He didn't want to go into the chemist. He waited outside with me and we went in after it had emptied out."
+      },
+      "modelNotes": "<p>The dog, the rain, the late bus and your four o'clock aren't in it.</p><p>That last line isn't a goal and it isn't a cultural outcome. It's the thing that makes next week easier for whoever has him.</p>"
     }
   ],
   "close": {
     "heading": "What you did",
-    "body": "<p>Back at the start you were sitting in a car park watching the wrong door.</p><p>Since then you've written three notes out loud, the last one in three minutes, and checked your own work against the standard before anyone showed you an answer.</p><p><strong>Download your work before you close this.</strong> Nothing here is stored anywhere else.</p>"
-  },
-  "fields": [
-    {
-      "key": "goals",
-      "label": "Goals",
-      "hint": "The long-term one. Where they are heading."
-    },
-    {
-      "key": "working",
-      "label": "Working towards",
-      "hint": "What happened today, towards it."
-    },
-    {
-      "key": "cultural",
-      "label": "Cultural outcomes",
-      "hint": "Community, language, land, family. Can be empty."
-    },
-    {
-      "key": "other",
-      "label": "Anything else worth recording",
-      "hint": "Fits no heading and the next worker still needs it. Often the most useful line."
-    }
-  ]
+    "body": "<p>Three notes, spoken out loud, the last one in three minutes. You checked your own before you saw anyone else's.</p><p><strong>Download your work before you close this.</strong></p>"
+  }
 }
