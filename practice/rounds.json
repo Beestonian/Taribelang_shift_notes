@@ -28,7 +28,8 @@
         "Someone who has never met Rachael could use this"
       ],
       "model": "<p><strong>Goals</strong> &mdash; Rachael's working towards keeping her job at the garden centre.</p><p><strong>Working towards</strong> &mdash; Drove Rachael to work for her 9:00 start. She told me she's been offered a Saturday shift next month and she's going to take it.</p><p><strong>Cultural outcomes</strong> &mdash; nothing this shift.</p>",
-      "modelNotes": "<p>The radio and the quiet drive aren't in it. The Saturday shift is &mdash; because whoever arranges her transport next month needs to know, and it falls on you to record it for them.</p>"
+      "modelNotes": "<p>The radio and the quiet drive aren't in it. The Saturday shift is &mdash; because whoever arranges her transport next month needs to know, and it falls on you to record it for them.</p>",
+      "readSeconds": 60
     },
     {
       "id": "round-2",
@@ -46,7 +47,8 @@
         "Someone covering Mary next Tuesday could use this"
       ],
       "model": "<p><strong>Goals</strong> &mdash; Mary's working towards getting her driver's licence.</p><p><strong>Working towards</strong> &mdash; 30 minutes of supervised driving practice on the back roads near Avoca. Mary reverse parked twice without prompting. She had her logbook in her bag before I arrived and filled it in herself while we were parked.</p><p><strong>Cultural outcomes</strong> &mdash; nothing this shift.</p>",
-      "modelNotes": "<p><strong>What's not in it:</strong> the conversation about her sister. It was pleasant. It isn't a support, a response to a support, or a goal. Leaving it out isn't being cold &mdash; it's keeping the note usable.</p><p><strong>What is in it, and might surprise you:</strong> that she had the logbook ready before you arrived. That looks like small talk. It isn't &mdash; it tells whoever has her next week that she's driving this herself now.</p>"
+      "modelNotes": "<p><strong>What's not in it:</strong> the conversation about her sister. It was pleasant. It isn't a support, a response to a support, or a goal. Leaving it out isn't being cold &mdash; it's keeping the note usable.</p><p><strong>What is in it, and might surprise you:</strong> that she had the logbook ready before you arrived. That looks like small talk. It isn't &mdash; it tells whoever has her next week that she's driving this herself now.</p>",
+      "readSeconds": 60
     },
     {
       "id": "round-3",
@@ -64,11 +66,34 @@
         "Someone covering David next Thursday could use this"
       ],
       "model": "<p><strong>Goals</strong> &mdash; David's working towards travelling independently around town, and towards connecting with community and language.</p><p><strong>Working towards</strong> &mdash; Caught the 2:15 bus into town. David watched for the stop and pressed the bell himself without prompting &mdash; first time he's done this.</p><p><strong>Cultural outcomes</strong> &mdash; David greeted the woman at the newsagent in language, then explained what the word meant and said his aunty taught him.</p><p><em>And one more line, which doesn't sit under a heading:</em></p><p>David didn't want to go into the chemist. He waited outside with me and we went in after it had emptied out.</p>",
-      "modelNotes": "<p>That last line isn't a goal and it isn't a cultural outcome. It's the thing that makes next week easier for whoever has him.</p><p>The dog, the rain, the late bus and your four o'clock are not in the note. None of them change what the next worker does.</p>"
+      "modelNotes": "<p>That last line isn't a goal and it isn't a cultural outcome. It's the thing that makes next week easier for whoever has him.</p><p>The dog, the rain, the late bus and your four o'clock are not in the note. None of them change what the next worker does.</p>",
+      "readSeconds": 90
     }
   ],
   "close": {
     "heading": "What you did",
     "body": "<p>Back at the start you were sitting in a car park watching the wrong door.</p><p>Since then you've written three notes out loud, the last one in three minutes, and checked your own work against the standard before anyone showed you an answer.</p><p><strong>Download your work before you close this.</strong> Nothing here is stored anywhere else.</p>"
-  }
+  },
+  "fields": [
+    {
+      "key": "goals",
+      "label": "Goals",
+      "hint": "The long-term one. Where they are heading."
+    },
+    {
+      "key": "working",
+      "label": "Working towards",
+      "hint": "What happened today, towards it."
+    },
+    {
+      "key": "cultural",
+      "label": "Cultural outcomes",
+      "hint": "Community, language, land, family. Can be empty."
+    },
+    {
+      "key": "other",
+      "label": "Anything else worth recording",
+      "hint": "Fits no heading and the next worker still needs it. Often the most useful line."
+    }
+  ]
 }
