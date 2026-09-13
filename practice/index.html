@@ -346,6 +346,28 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
     var m = Math.floor(sec/60), s = sec % 60;
     return (neg?"+":"") + m + ":" + (s<10?"0":"") + s;
   }
+  /* Theme. ?theme=light|dark forces one — embed the page with
+     ?theme=light so it matches Rise instead of following the device.
+     Whatever the learner is looking at carries to the external tab. */
+  function applyTheme(){
+    var m = /[?&]theme=(light|dark)(?:&|$)/.exec(location.search);
+    if(m) document.documentElement.setAttribute("data-theme", m[1]);
+  }
+  function effectiveTheme(){
+    var set = document.documentElement.getAttribute("data-theme");
+    if(set) return set;
+    try{
+      if(window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
+    }catch(e){}
+    return "light";
+  }
+  function externalHref(){
+    var q = location.search.replace(/[?&](theme=[^&]*|edit(=[^&]*)?)/g,"").replace(/^&/,"");
+    if(q && q.charAt(0) !== "?") q = "?" + q.replace(/^\?/,"");
+    q = q ? q + "&" : "?";
+    return location.origin + location.pathname + q + "theme=" + effectiveTheme();
+  }
+
   function ta(value, placeholder, tall, oninput){
     var t = document.createElement("textarea");
     if(tall) t.className = "tall";
@@ -394,27 +416,45 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
   /* ---------- individual steps ---------- */
 
   function stepRead(r, body, nav){
-    body.appendChild(el("div","brief", r.brief));
+    var secs = r.readSeconds || 60;
+    body.appendChild(el("p","sub",
+      "You'll get <b>" + mmss(secs) + "</b> with this shift in front of you. Then it goes away and you speak from memory. Start it when you're ready."));
+
+    var hold = el("div","hidden-brief",
+      "<b>The shift is covered.</b> Press Start reading and the clock begins.");
+    body.appendChild(hold);
+
     var cw = el("div","clockwrap");
-    var clock = el("span","clock", mmss(r.readSeconds || 60));
-    cw.appendChild(clock);
-    cw.appendChild(el("span","clock-note","Read it, then it goes away. You'll speak from memory."));
+    var clock = el("span","clock", mmss(secs));
+    var note = el("span","clock-note","Nothing is running yet.");
+    cw.appendChild(clock); cw.appendChild(note);
     body.appendChild(cw);
-    var left = r.readSeconds || 60;
-    var tick = setInterval(function(){
-      left--;
-      clock.textContent = mmss(left);
-      if(left <= 0){ clearInterval(tick); next(); }
-    }, 1000);
-    live = { tick: tick };
-    var go2 = el("button","btn primary","I've read it");
-    go2.type = "button";
-    go2.addEventListener("click", next);
-    nav.appendChild(go2);
-    emit(V.experienced, "experienced", {
-      object: roundObject(r, "brief", "Read the shift narrative under a time limit.", "other"),
-      context: ctx()
+
+    var startBtn = el("button","btn primary","Start reading");
+    startBtn.type = "button";
+    var doneBtn = el("button","btn primary","I've read it");
+    doneBtn.type = "button"; doneBtn.hidden = true;
+    doneBtn.addEventListener("click", next);
+
+    startBtn.addEventListener("click", function(){
+      startBtn.hidden = true; doneBtn.hidden = false;
+      hold.className = "brief"; hold.innerHTML = r.brief;
+      note.textContent = "Read it. When this hits zero the shift goes away.";
+      var left = secs;
+      var tick = setInterval(function(){
+        left--;
+        clock.textContent = mmss(left);
+        if(left <= 0){ clearInterval(tick); next(); }
+      }, 1000);
+      live = { tick: tick };
+      emit(V.experienced, "experienced", {
+        object: roundObject(r, "brief", "Read the shift narrative under a self-started time limit.", "other"),
+        result: { duration: iso(secs*1000) },
+        context: ctx()
+      });
     });
+    nav.appendChild(startBtn);
+    nav.appendChild(doneBtn);
   }
 
   function stepSpeak(r, body, nav){
@@ -438,7 +478,9 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
     recBtn.type = "button"; recBtn.setAttribute("aria-pressed","false");
     var dlBtn = el("button","btn","Download recording");
     dlBtn.type = "button"; dlBtn.disabled = !audioStore[r.id];
-    row.appendChild(recBtn); row.appendChild(dlBtn);
+    var clockBtn = el("button","btn primary","Start the clock");
+    clockBtn.type = "button"; clockBtn.hidden = true;
+    row.appendChild(recBtn); row.appendChild(clockBtn); row.appendChild(dlBtn);
     body.appendChild(row);
 
     var audio = document.createElement("audio");
@@ -464,10 +506,21 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
       warn.innerHTML = "<b>This browser won't let the page use your microphone here.</b> " +
         "That's the page being embedded, not your device. Say your note out loud anyway — " +
         "out loud is the part that matters — then write it down on the next screen. " +
-        '<br><br><a href="' + esc(location.href) + '" target="_blank" rel="noopener">Open this in its own tab</a> if you want the recorder.';
-      recBtn.disabled = true;
-      if(!st.t0){ st.t0 = Date.now(); st.tick = setInterval(paintClock, 250); paintClock(); }
+        '<br><br><a href="' + esc(externalHref()) + '" target="_blank" rel="noopener">Open this in its own tab</a> if you want the recorder.';
+      recBtn.hidden = true;
+      clockBtn.hidden = false;
     }
+    clockBtn.addEventListener("click", function(){
+      if(st.tick){
+        clearInterval(st.tick); st.tick = null;
+        clockBtn.textContent = "Start the clock";
+        d.spokeSeconds = st.elapsed; saveWork();
+        return;
+      }
+      st.t0 = Date.now(); paintClock();
+      st.tick = setInterval(paintClock, 250);
+      clockBtn.textContent = "Stop the clock";
+    });
     function stop(){
       try{ st.rec.stop(); }catch(e){}
       if(st.stream) st.stream.getTracks().forEach(function(t){ t.stop(); });
@@ -859,6 +912,7 @@ details.xapi pre{background:var(--surface);border:1px solid var(--line);border-r
   /* ==================================================================
      Boot
      ================================================================== */
+  applyTheme();
   DATA = load();
   if(!DATA || !DATA.rounds || !DATA.rounds.length){
     app.innerHTML = '<div class="err"><b>Couldn\'t load the rounds.</b><br>Expected <code>' +
