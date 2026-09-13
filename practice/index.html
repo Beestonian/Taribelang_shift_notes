@@ -117,6 +117,32 @@ details.xapi summary{cursor:pointer;padding:8px 0;color:var(--ink-2);font-weight
 details.xapi pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;
   overflow:auto;max-height:340px;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--ink-2)}
 .err{background:var(--bad-soft);border:1.5px solid var(--bad);border-radius:10px;padding:16px;font-size:15px}
+/* step transitions */
+@keyframes cardIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+@keyframes cardOut{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-14px)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+.card.enter{animation:cardIn .26s cubic-bezier(.2,.7,.3,1) both}
+.card.leave{animation:cardOut .16s ease-in both}
+.brief.reveal,.field,.cmp{animation:fadeIn .3s ease both}
+.field:nth-child(2){animation-delay:.04s}.field:nth-child(3){animation-delay:.08s}
+.field:nth-child(4){animation-delay:.12s}
+.cmp:nth-child(2){animation-delay:.05s}.cmp:nth-child(3){animation-delay:.1s}
+.cmp:nth-child(4){animation-delay:.15s}
+@media (prefers-reduced-motion:reduce){
+  .card.enter,.card.leave,.brief.reveal,.field,.cmp{animation:none !important}
+}
+
+/* in-page dialog — native confirm() is suppressed inside Rise's iframe */
+.scrim{position:fixed;inset:0;background:rgba(8,14,20,.55);display:flex;align-items:center;
+  justify-content:center;padding:20px;z-index:50;animation:fadeIn .15s ease both}
+.dialog{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:22px 24px;max-width:420px;width:100%;animation:popIn .2s cubic-bezier(.2,.7,.3,1) both}
+.dialog h3{margin:0 0 8px;font-size:19px;color:var(--ink)}
+.dialog p{margin:0 0 18px;font-size:15.5px;color:var(--ink-2)}
+.dialog .row{justify-content:flex-end}
+@media (prefers-reduced-motion:reduce){ .scrim,.dialog{animation:none !important} }
+
 .foot{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:18px 2px 0}
 button.linkbtn{font:inherit;font-size:14px;background:none;border:0;padding:0;color:var(--ink-2);
   text-decoration:underline;cursor:pointer}
@@ -350,6 +376,34 @@ button.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     var m = Math.floor(sec/60), s = sec % 60;
     return (neg?"+":"") + m + ":" + (s<10?"0":"") + s;
   }
+  /* Native confirm() is suppressed inside a sandboxed iframe, so it
+     fails silently. Everything that needs a yes uses this instead. */
+  function ask(heading, message, yesLabel, onYes){
+    var scrim = el("div","scrim");
+    var dlg = el("div","dialog");
+    dlg.setAttribute("role","alertdialog");
+    dlg.setAttribute("aria-modal","true");
+    dlg.appendChild(el("h3",null, esc(heading)));
+    dlg.appendChild(el("p",null, esc(message)));
+    var row = el("div","row");
+    var no = el("button","btn","Cancel"); no.type = "button";
+    var yes = el("button","btn primary", esc(yesLabel)); yes.type = "button";
+    row.appendChild(no); row.appendChild(yes);
+    dlg.appendChild(row);
+    scrim.appendChild(dlg);
+    function close(){
+      document.removeEventListener("keydown", onKey);
+      if(scrim.parentNode) scrim.parentNode.removeChild(scrim);
+    }
+    function onKey(e){ if(e.key === "Escape") close(); }
+    no.addEventListener("click", close);
+    scrim.addEventListener("click", function(e){ if(e.target === scrim) close(); });
+    document.addEventListener("keydown", onKey);
+    yes.addEventListener("click", function(){ close(); onYes(); });
+    document.body.appendChild(scrim);
+    yes.focus();
+  }
+
   function ta(value, cls, oninput){
     var t = document.createElement("textarea");
     if(cls) t.className = cls;
@@ -399,9 +453,19 @@ button.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   }
   function go(r, s){
     teardown();
-    if(s != null) pos.s = s;
-    if(r != null) pos.r = r;
-    savePos(); paint(); window.scrollTo(0,0);
+    var old = app.querySelector(".card");
+    function land(){
+      if(s != null) pos.s = s;
+      if(r != null) pos.r = r;
+      savePos(); paint(); window.scrollTo(0,0);
+    }
+    var reduce = false;
+    try{ reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+    if(old && !reduce){
+      old.classList.remove("enter");
+      old.classList.add("leave");
+      setTimeout(land, 150);
+    } else land();
   }
   function next(){
     if(pos.s < STEPS.length - 1) return go(null, pos.s + 1);
@@ -426,7 +490,7 @@ button.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
     startBtn.addEventListener("click", function(){
       startBtn.hidden = true; doneBtn.hidden = false;
-      holder.className = "brief"; holder.innerHTML = r.brief;
+      holder.className = "brief reveal"; holder.innerHTML = r.brief;
       clock.classList.remove("idle");
       var left = secs;
       var tick = setInterval(function(){
@@ -702,8 +766,10 @@ button.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     nav.appendChild(el("span","spacer",""));
     var again = el("button","btn","Start again"); again.type="button";
     again.addEventListener("click", function(){
-      if(!confirm("Clear everything — your notes, your recordings and your place — and start again from round one?")) return;
-      resetAll(); go(0,0);
+      ask("Start over?",
+          "This will clear your progress — your notes, your recordings and your place. Are you sure?",
+          "Clear and start over",
+          function(){ resetAll(); go(0,0); });
     });
     nav.appendChild(again);
     card.appendChild(nav);
@@ -741,7 +807,7 @@ button.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
       prog.appendChild(bar);
       app.appendChild(prog);
 
-      var card = el("section","card");
+      var card = el("section","card enter");
       card.appendChild(el("h2","step-title", esc(STEP_TITLES[key])));
       var body = el("div",null,"");
       card.appendChild(body);
@@ -785,9 +851,10 @@ button.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     var b = el("button","linkbtn","Start over");
     b.type = "button";
     b.addEventListener("click", function(){
-      if(!confirm("Clear everything — your notes, your recordings and your place — and start again from round one?")) return;
-      resetAll();
-      go(0,0);
+      ask("Start over?",
+          "This will clear your progress — your notes, your recordings and your place. Are you sure?",
+          "Clear and start over",
+          function(){ resetAll(); go(0,0); });
     });
     f.appendChild(b);
     f.appendChild(el("span","foot-note","Clears everything on this device."));
@@ -882,8 +949,10 @@ button.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     });
     var wipe = el("button","btn","Clear learner work"); wipe.type="button";
     wipe.addEventListener("click", function(){
-      if(!confirm("Clear everything typed into this browser?")) return;
-      resetAll(); go(0,0);
+      ask("Clear learner work?",
+          "This will clear everything typed into this browser.",
+          "Clear it",
+          function(){ resetAll(); go(0,0); });
     });
     row.appendChild(prev); row.appendChild(save); row.appendChild(wipe);
     box.appendChild(row);
