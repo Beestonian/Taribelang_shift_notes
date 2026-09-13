@@ -139,7 +139,7 @@
       "x": 1326,
       "y": 102,
       "title": "You go in and ask",
-      "body": "<p>The woman on the register is helpful. She picks up the handset behind the counter.</p><p><em>\"Rachael to the front counter please, Rachael to the front counter, your lift is here.\"</em></p><p>It carries the length of the shop. A bloke stacking mulch looks up. Two customers in the queue look up.</p><p>Someone goes out the back to fetch her, and she comes the whole way through the shop to the front counter, past the registers, past the queue, with her bag on her shoulder.</p><p>She does not look at you until you are both outside.</p><p>You make physio with three minutes to spare.</p>",
+      "body": "<p>The woman on the register is helpful. She picks up the handset behind the counter.</p><p><em>\"Rachael to the front counter please, Rachael to the front counter, your lift is here.\"</em></p><p>It carries the length of the shop. A bloke stacking mulch looks up. Two customers in the queue look up.</p><p>Someone goes out the back to fetch her, and she comes the whole way through the shop to the front counter, past the registers, past the queue, with her bag on her shoulder.</p><p>She does not look at you until you are both outside.</p><p>In the car she says, <em>“I usually just wait round the back. Don’t like coming through the front when it’s busy.”</em></p><p>You make physio with three minutes to spare.</p>",
       "image": "images/B4_scene_s_ask.png",
       "video": "",
       "choices": [
@@ -179,7 +179,7 @@
       "x": 1340,
       "y": 640,
       "title": "You wait. So does she.",
-      "body": "<p>You wait in the car. Rachael waits on a pallet by the loading door, where she waits every Wednesday.</p><p>At half past three she gives up and walks round to the front.</p><p>Physio is gone. You ring them from the car park and rebook for Tuesday.</p><p>She does not say anything on the drive home. When you ask if she is alright she says she is fine.</p>",
+      "body": "<p>You wait in the car. Rachael waits on a pallet by the loading door, where she waits every Wednesday.</p><p>At half past three she gives up and walks round to the front.</p><p>Physio is gone. You ring them from the car park and rebook for Tuesday.</p><p>She does not say anything on the drive home. When you ask if she is alright she says she is fine.</p><p>Then, after a while: <em>“I wait round the back on Wednesdays. I don’t like coming out the front when the shop’s full.”</em></p>",
       "image": "images/B6_scene_s_wait.png",
       "video": "",
       "choices": [
