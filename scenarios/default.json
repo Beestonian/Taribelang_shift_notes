@@ -8,13 +8,13 @@
     "var_wait": {
       "id": "var_wait",
       "key": "wait",
-      "label": "Minutes Rachel has been waiting",
+      "label": "Minutes Rachael has been waiting",
       "start": 0,
       "min": 0,
       "max": 180,
       "decimals": 0,
       "show": true,
-      "x": 700,
+      "x": 960,
       "y": 880
     }
   },
@@ -26,11 +26,17 @@
       "x": 100,
       "y": 340,
       "title": "15:00, Wednesday",
-      "body": "<p>You are covering a shift for Danni, who called in sick.</p><p><strong>Rachel, 24.</strong> She works Wednesdays at a garden centre on the north side of town. The roster says collect her at <strong>3:00</strong> and drive her to physio at <strong>3:30</strong>.</p><p>You have never met her. Her photo is on her profile, so you know who you are looking for. You are parked where you can see the front doors.</p><p>It is three o'clock. The only thing you have is last week's note.</p>",
+      "body": "<p>You are covering a shift for Danni, who called in sick.</p><p><strong>Rachael, 24.</strong> She works Wednesdays at a garden centre on the north side of town. The roster says collect her at <strong>3:00</strong> and drive her to physio at <strong>3:30</strong>.</p><p>You have never met her. Her photo is on her profile, so you know who you are looking for. You are parked where you can see the front doors.</p><p>It is three o'clock. The only thing you have is last week's note.</p>",
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Read the note", "target": "s_note", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "Read the note",
+          "target": "s_note",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "s_note": {
@@ -40,120 +46,237 @@
       "x": 400,
       "y": 340,
       "title": "Last Wednesday's note",
-      "body": "<p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Took Rachel to work. All good. She seemed a little tired in the car.</em></p><p>That is the whole note. Eleven words.</p>",
+      "body": "<p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Took Rachael to work. All good. She seemed a little tired in the car.</em></p><p>That is the whole note. Eleven words.</p>",
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Watch the doors", "target": "q_arrive", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "Open her profile",
+          "target": "s_profile",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "q_arrive": {
       "id": "q_arrive",
       "type": "question",
       "name": "She doesn't come out",
-      "x": 700,
+      "x": 960,
       "y": 340,
       "title": "Nobody comes out",
-      "body": "<p>Ten past three. Staff come and go through the front doors. None of them is Rachel.</p><p>Physio is a twelve minute drive and they give fifteen minutes' grace. Your next client is at four, across town.</p><p><strong>What do you do?</strong></p>",
+      "body": "<p>Ten past three. Staff come and go through the front doors. None of them is Rachael.</p><p>Physio is a twelve minute drive and they give fifteen minutes' grace. Your next client is at four, across town.</p><p><strong>What do you do?</strong></p>",
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Go in and ask a staff member to find her", "target": "s_ask", "points": 0, "feedback": "",
-          "effects": [ { "varId": "var_wait", "op": "add", "amount": 12, "id": "f_ask" } ] },
-        { "id": "c2", "label": "Ring the office", "target": "s_ring", "points": 0, "feedback": "",
-          "effects": [ { "varId": "var_wait", "op": "add", "amount": 8, "id": "f_ring" } ] },
-        { "id": "c3", "label": "Wait — she'll come out eventually", "target": "s_wait", "points": 0, "feedback": "",
-          "effects": [ { "varId": "var_wait", "op": "add", "amount": 30, "id": "f_wait" } ] },
-        { "id": "c4", "label": "Log a no-show and get to your next client", "target": "s_noshow", "points": -3, "feedback": "",
-          "effects": [ { "varId": "var_wait", "op": "add", "amount": 40, "id": "f_noshow" } ] }
+        {
+          "id": "c1",
+          "label": "Go in and ask a staff member to find her",
+          "target": "s_ask",
+          "points": 0,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 12,
+              "id": "f_ask"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "Ring the office",
+          "target": "s_ring",
+          "points": 0,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 8,
+              "id": "f_ring"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "Wait — she'll come out eventually",
+          "target": "s_wait",
+          "points": 0,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 30,
+              "id": "f_wait"
+            }
+          ]
+        },
+        {
+          "id": "c4",
+          "label": "Log a no-show and get to your next client",
+          "target": "s_noshow",
+          "points": -3,
+          "feedback": "",
+          "effects": [
+            {
+              "varId": "var_wait",
+              "op": "add",
+              "amount": 40,
+              "id": "f_noshow"
+            }
+          ]
+        }
       ]
     },
     "s_ask": {
       "id": "s_ask",
       "type": "content",
       "name": "You go in and ask",
-      "x": 1080,
+      "x": 1340,
       "y": -60,
       "title": "You go in and ask",
-      "body": "<p>The woman on the register is helpful. She picks up the handset behind the counter.</p><p><em>\"Rachel to the front counter please, Rachel to the front counter, your lift is here.\"</em></p><p>It carries the length of the shop. A bloke stacking mulch looks up. Two customers in the queue look up.</p><p>Someone goes out the back to fetch her, and she comes the whole way through the shop to the front counter, past the registers, past the queue, with her bag on her shoulder.</p><p>She does not look at you until you are both outside.</p><p>You make physio with three minutes to spare.</p>",
+      "body": "<p>The woman on the register is helpful. She picks up the handset behind the counter.</p><p><em>\"Rachael to the front counter please, Rachael to the front counter, your lift is here.\"</em></p><p>It carries the length of the shop. A bloke stacking mulch looks up. Two customers in the queue look up.</p><p>Someone goes out the back to fetch her, and she comes the whole way through the shop to the front counter, past the registers, past the queue, with her bag on her shoulder.</p><p>She does not look at you until you are both outside.</p><p>You make physio with three minutes to spare.</p>",
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Continue", "target": "q_note", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "Continue",
+          "target": "q_note",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "s_ring": {
       "id": "s_ring",
       "type": "content",
       "name": "You ring the office",
-      "x": 1080,
+      "x": 1340,
       "y": 300,
       "title": "You ring the office",
-      "body": "<p>It rings out. You leave a message.</p><p>Nobody at the office knows where Rachel waits either. It was never written down, so there is nothing in the file for them to read back to you even if they answer.</p><p>Rachel rang them nine minutes ago from the pallet by the loading door, wondering where her lift was. That message is sitting under yours.</p><p>It is 3:18. You are still in the car park.</p>",
+      "body": "<p>It rings out. You leave a message.</p><p>Nobody at the office knows where Rachael waits either. It was never written down, so there is nothing in the file for them to read back to you even if they answer.</p><p>Rachael rang them nine minutes ago from the pallet by the loading door, wondering where her lift was. That message is sitting under yours.</p><p>It is 3:18. You are still in the car park.</p>",
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "So — what now?", "target": "q_arrive", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "So — what now?",
+          "target": "q_arrive",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "s_wait": {
       "id": "s_wait",
       "type": "content",
       "name": "You both wait",
-      "x": 1080,
+      "x": 1340,
       "y": 640,
       "title": "You wait. So does she.",
-      "body": "<p>You wait in the car. Rachel waits on a pallet by the loading door, where she waits every Wednesday.</p><p>At half past three she gives up and walks round to the front.</p><p>Physio is gone. You ring them from the car park and rebook for Tuesday.</p><p>She does not say anything on the drive home. When you ask if she is alright she says she is fine.</p>",
+      "body": "<p>You wait in the car. Rachael waits on a pallet by the loading door, where she waits every Wednesday.</p><p>At half past three she gives up and walks round to the front.</p><p>Physio is gone. You ring them from the car park and rebook for Tuesday.</p><p>She does not say anything on the drive home. When you ask if she is alright she says she is fine.</p>",
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Continue", "target": "q_note", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "Continue",
+          "target": "q_note",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "s_noshow": {
       "id": "s_noshow",
       "type": "content",
       "name": "You log a no-show",
-      "x": 1080,
+      "x": 1340,
       "y": 980,
       "title": "You log it as a no-show",
-      "body": "<p>It is the defensible call. You waited ten minutes, she did not come out, and you have a client at four.</p><p>You tap <em>client not present</em> and drive across town.</p><p>Rachel sat on the pallet until twenty to four. Then she walked home, because the office had not picked up and she did not have your number.</p><p><strong>She was there the whole time.</strong></p><p>The file now says she was not. At her next plan review, that is one more line saying this support is not being used.</p>",
+      "body": "<p>It is the defensible call. You waited ten minutes, she did not come out, and you have a client at four.</p><p>You tap <em>client not present</em> and drive across town.</p><p>Rachael sat on the pallet until twenty to four. Then she walked home, because the office had not picked up and she did not have your number.</p><p><strong>She was there the whole time.</strong></p><p>The file now says she was not. At her next plan review, that is one more line saying this support is not being used.</p>",
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "Continue", "target": "q_note", "points": 0, "feedback": "" }
+        {
+          "id": "c1",
+          "label": "Continue",
+          "target": "q_note",
+          "points": 0,
+          "feedback": ""
+        }
       ]
     },
     "q_note": {
       "id": "q_note",
       "type": "question",
       "name": "Your turn to write",
-      "x": 1500,
+      "x": 1760,
       "y": 340,
       "title": "You are writing your own note now",
-      "body": "<p>Next Wednesday somebody covers Rachel. It might be Danni. It might be someone who has never met her.</p><p><strong>Which of these would you write?</strong></p>",
+      "body": "<p>Next Wednesday somebody covers Rachael. It might be Danni. It might be someone who has never met her.</p><p><strong>Which of these would you write?</strong></p>",
       "image": "",
       "video": "",
       "choices": [
-        { "id": "c1", "label": "\"Collected Rachel from work and drove her to physio. All went well.\"", "target": "s_end", "points": 0,
-          "feedback": "\"All went well\" is your judgement, and the next worker cannot act on it. They will sit in that car park watching the front doors exactly like you did." },
-        { "id": "c2", "label": "\"Rachel works in the back and waits by the loading door when she finishes, not the front entrance. She'd rather not be collected where the shop can see. Collected her at 3:12.\"", "target": "s_end", "points": 3,
-          "feedback": "This is the one — and the second sentence is the half that matters. Where she waits saves the next worker ten minutes. Why she waits there stops them deciding the front would be simpler and asking her to move." },
-        { "id": "c3", "label": "\"Rachel wasn't waiting where she was supposed to be.\"", "target": "s_end", "points": -2,
-          "feedback": "\"Supposed to be\" makes it Rachel's error. She was exactly where she always is. The only thing that was not where it should have been is the information." }
+        {
+          "id": "c1",
+          "label": "\"Collected Rachael from work and drove her to physio. All went well.\"",
+          "target": "s_end",
+          "points": 0,
+          "feedback": "\"All went well\" is your judgement, and the next worker cannot act on it. They will sit in that car park watching the front doors exactly like you did."
+        },
+        {
+          "id": "c2",
+          "label": "\"Rachael works in the back and waits by the loading door when she finishes, not the front entrance. She'd rather not be collected where the shop can see. Collected her at 3:12.\"",
+          "target": "s_end",
+          "points": 3,
+          "feedback": "This is the one — and the second sentence is the half that matters. Where she waits saves the next worker ten minutes. Why she waits there stops them deciding the front would be simpler and asking her to move."
+        },
+        {
+          "id": "c3",
+          "label": "\"Rachael wasn't waiting where she was supposed to be.\"",
+          "target": "s_end",
+          "points": -2,
+          "feedback": "\"Supposed to be\" makes it Rachael's error. She was exactly where she always is. The only thing that was not where it should have been is the information."
+        }
       ]
     },
     "s_end": {
       "id": "s_end",
       "type": "ending",
       "name": "Debrief",
-      "x": 1920,
+      "x": 2180,
       "y": 340,
       "title": "There was no good option at ten past three",
-      "body": "<p>The roster was right. You were on time. Rachel finished when she always finishes and waited where she always waits.</p><p>Every option cost her something.</p><p>Asking inside got her to physio — and walked her the length of the shop past the registers, which is the exact thing she goes out the back to avoid. Waiting cost her the appointment. The office could not help, because nobody had written it down for them either. And a no-show put something in her file that was not true.</p><hr><p><strong>Danni never wrote it down.</strong> Danni just goes round the back. After a few months it stopped being a thing you would think to mention — it was simply how the shift went.</p><p>That is the trap. The things you learn about someone stop feeling like information once you know them. They start feeling like the job.</p><p>They are not the job. They are the part of the job that leaves with you.</p><hr><p>Here is the note that would have prevented all of it:</p><p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Drove Rachel to the garden centre for her 9:00 start. She works in the back and waits by the loading door when she finishes, not the front entrance — she would rather not be collected where the shop can see. Collected her at 3:05 and drove her to physio.</em></p><p>Thirty-four words. About a minute.</p><p>It does not just save the next worker ten minutes in a car park. It means Rachel never has to choose between being on time and being seen.</p><p><strong>A note is not for you. It is for the day you are not there.</strong></p>",
+      "body": "<p>The roster was right. You were on time. Rachael finished when she always finishes and waited where she always waits.</p><p>Every option cost her something.</p><p>Asking inside got her to physio — and walked her the length of the shop past the registers, which is the exact thing she goes out the back to avoid. Waiting cost her the appointment. The office could not help, because nobody had written it down for them either. And a no-show put something in her file that was not true.</p><hr><p><strong>Danni never wrote it down.</strong> Danni just goes round the back. After a few months it stopped being a thing you would think to mention — it was simply how the shift went.</p><p>That is the trap. The things you learn about someone stop feeling like information once you know them. They start feeling like the job.</p><p>They are not the job. They are the part of the job that leaves with you.</p><hr><p>Here is the note that would have prevented all of it:</p><p style=\"padding:14px;border-left:3px solid currentColor;opacity:.85\"><em>Drove Rachael to the garden centre for her 9:00 start. She works in the back and waits by the loading door when she finishes, not the front entrance — she would rather not be collected where the shop can see. Collected her at 3:05 and drove her to physio.</em></p><p>Thirty-four words. About a minute.</p><p>It does not just save the next worker ten minutes in a car park. It means Rachael never has to choose between being on time and being seen.</p><p><strong>A note is not for you. It is for the day you are not there.</strong></p>",
       "image": "",
       "video": "",
       "choices": []
+    },
+    "s_profile": {
+      "id": "s_profile",
+      "type": "content",
+      "name": "Her profile",
+      "x": 550,
+      "y": 340,
+      "title": "You open her profile",
+      "body": "<p>While you wait, you open Rachael's profile on the app.</p><p>It is a good file. Service agreement, current plan, physio referral — all dated this year.</p><p><strong>Goals.</strong> Keep working Wednesdays at the garden centre. Finish the physio program on her left shoulder. Build up to using the bus on her own.</p><p><strong>Risks &amp; Health.</strong> Shoulder injury in July. No medications. No allergies.</p><p>And one line under notes: <em>Rachael can find busy or crowded environments difficult.</em></p><p>You put your phone down and watch the doors.</p>",
+      "image": "",
+      "video": "",
+      "choices": [
+        {
+          "id": "c1",
+          "label": "Keep watching",
+          "target": "q_arrive",
+          "points": 0,
+          "feedback": ""
+        }
+      ]
     }
   }
 }
